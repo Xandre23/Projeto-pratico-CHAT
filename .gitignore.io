@@ -1,3 +1,0 @@
-.metadata /
-Servidores /
-/ .recommenders /
