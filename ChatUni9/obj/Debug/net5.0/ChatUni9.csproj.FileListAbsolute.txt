@@ -39,3 +39,4 @@ D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\obj\De
 D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\obj\Debug\net5.0\ChatUni9.genruntimeconfig.cache
 D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\obj\Debug\net5.0\ChatUni9.csproj.CopyComplete
 D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\obj\Debug\net5.0\Razor\Views\Talk\Index.cshtml.g.cs
+D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
