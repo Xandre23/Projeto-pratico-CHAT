@@ -1,0 +1,18 @@
+﻿<form class="mt-5 mb-5" method="post" id="frm-create-account">
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword">Senha</label>
+            <input type="text" class="form-control" id="inputPassword" name="inputPassword" placeholder="Senha">
+        </div>
+    </div>   
+    <a class="btn btn-primary mt-3" id="btn-login">Entrar</a>
+</form>
+
+@section Scripts {
+    <script src="~/js/account.js" asp-append-version="true"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

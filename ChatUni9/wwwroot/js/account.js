@@ -90,3 +90,22 @@
     //    }
     //});
 }); 
+
+
+$("#btn-login").click(function (){
+    const parameters = {
+        email : $("#inputEmail").val(),
+        password : $("#inputPassword").val()
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/Account/Login",
+        data: $.param(parameters),
+        dataType: "json",
+        success: function () { alert('Success'); },
+        error: function () {
+            alert("error");
+        }
+    });
+});
