@@ -1,0 +1,39 @@
+﻿using ChatUni9.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ChatUni9.DAO.Account
+{
+    public class AccountDAO
+    {
+        public async Task<UserViewModel> Login(string email, string password)
+        {
+            var listUsers = new List<UserViewModel>();
+
+            listUsers.AddRange(new List<UserViewModel>()
+            {
+                new UserViewModel()
+                {
+                    ID = 1,
+                    Nome = "Leonardo",
+                    Email = "leonardo.amorim253@gmail.com",
+                    Senha = "123"
+                },
+                new UserViewModel()
+                {
+                    ID = 2,
+                    Nome = "Xandre",
+                    Email = "xandre@gmail.com",
+                    Senha = "123"
+                    
+                }
+            });
+
+            var user = listUsers.Where(u => u.Email == email && u.Senha == password);
+
+            return user.FirstOrDefault();
+        }
+    }
+}
