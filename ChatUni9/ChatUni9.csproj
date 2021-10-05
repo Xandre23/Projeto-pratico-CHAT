@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Abp" Version="6.5.0" />
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.11.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.26" />
   </ItemGroup>
 
 </Project>

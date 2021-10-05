@@ -32,7 +32,7 @@ namespace ChatUni9
 
                 Console.WriteLine(ex.ToString());
             }
-            
+
             Console.WriteLine("Feito.");
             return conn;
         }
@@ -46,5 +46,3 @@ namespace ChatUni9
 
 
 }
-
-
