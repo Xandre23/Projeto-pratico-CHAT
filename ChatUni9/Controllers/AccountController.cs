@@ -3,6 +3,7 @@ using ChatUni9.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,44 @@ namespace ChatUni9.Controllers
         {
             return View();
         }
+        Conexao conexao = new Conexao();
 
+        public String mensagem = "";
         [HttpPost]
         public void Create(UserViewModel user)
         {
 
+
+
+
+            var conexao = new Conexao().Open();
+            MySqlCommand cmd = conexao.CreateCommand();
+
+            cmd.CommandText = "insert into usuario (nome, sobrenome, email, senha, sexo) values(@nome, @sobrenome, @email, @senha, @sexo)";
+
+            cmd.Parameters.AddWithValue("@nome", user.Nome);
+            cmd.Parameters.AddWithValue("@sobrenome", user.Sobrenome);
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@senha", user.Senha);
+            cmd.Parameters.AddWithValue("@sexo", user.Sexo);
+            try
+            {
+
+
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+
+
+                this.mensagem = "Cadastrado com sucesso";
+
+            }
+            catch (MySqlException e)
+            {
+                this.mensagem = "Erro de cadastro";
+            }
+
         }
+    
 
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)

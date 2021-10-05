@@ -1,111 +1,92 @@
 ﻿$("#btn-create").click(function () {
     var user = {
-        Nome : $("#inputNome").val(),
-        Sobrenome : $("#inputSobrenome").val(),
-        Email : $("#inputEmail").val(),
-        Senha : $("#inputSenha").val(),
-        Sexo : $("#inputSexo").val(),
-        TokenGoogle : "",
-        TokenFacebook : "" 
+        Nome: $("#inputNome").val(),
+        Sobrenome: $("#inputSobrenome").val(),
+        Email: $("#inputEmail").val(),
+        Senha: $("#inputPassword").val(),
+        Sexo: $("#inputSexo option:selected").val(),
+        tokengoogle: "",
+        tokenfacebook: ""
     }
-    //console.log(JSON.stringify(user));
- 
+    //console.log(json.stringify(user));
+
     $.ajax({
-        type: "POST",
-        url: "/Account/Create",
+        type: "post",
+        url: "/account/create",
         data: user,
-        dataType: "json",
-        success: function () { alert('Success'); },
+        datatype: "json",
+        success: function () { alert('success'); },
         error: function () {
-            alert("error");
+            alert('error');
         }
     });
 
     //$.ajax({
-    //    type: "POST",
-    //    url: "/Account/Create",
-    //    contentType: "application/json",
+    //    type: "post",
+    //    url: "/account/create",
+    //    contenttype: "application/json",
     //    traditional: true,
     //    async: false,
     //    cache: false,
-    //    data:JSON.stringify(user),
+    //    data:json.stringify(user),
     //    context: document.body,
     //    success: function (result) {
     //        alert("foi");
 
     //    },
-    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //        console.error('erro >>>' + errorThrown + '>> ' + XMLHttpRequest.responseText + '>>>' + textStatus);
+    //    error: function (xmlhttprequest, textstatus, errorthrown) {
+    //        console.error('erro >>>' + errorthrown + '>> ' + xmlhttprequest.responsetext + '>>>' + textstatus);
     //      alert("erro")
     //    },
     //});
     //var person = {};
-    //person.Name = 2;
+    //person.name = 2;
     //$.ajax({
-    //    type: "POST",
-    //    url: "/Account/Create",
+    //    type: "post",
+    //    url: "/account/create",
     //    data:  person,
     //    success: function (response) {
-    //        alert("Hello: " + response.Name + ".\nCurrent Date and Time: " + response.DateTime);
+    //        alert("hello: " + response.name + ".\ncurrent date and time: " + response.datetime);
     //    },
     //    failure: function (response) {
-    //        alert(response.responseText);
+    //        alert(response.responsetext);
     //    },
     //    error: function (response) {
-    //        alert(response.responseText);
+    //        alert(response.responsetext);
     //    }
     //});
 
     //$.ajax({
-    //    type: "POST",
-    //    url: "/Account/Create",
-    //    contentType: "application/json; charset=utf-8",
-    //    data: JSON.stringify({ user: user }),
-    //    data: '{person: ' + JSON.stringify(person) + '}',
-    //    success: function () { alert('Success'); },
+    //    type: "post",
+    //    url: "/account/create",
+    //    contenttype: "application/json; charset=utf-8",
+    //    data: json.stringify({ user: user }),
+    //    data: '{person: ' + json.stringify(person) + '}',
+    //    success: function () { alert('success'); },
     //    error: function () {
     //        alert("erro")
     //    }
     //});
 
 
-    //var myData = [
+    //var mydata = [
     //    {
     //        id: "a",
-    //        name: "Name 1"
+    //        name: "name 1"
     //    },
     //    {
     //        id: "b",
-    //        name: "Name 2"
+    //        name: "name 2"
     //    }
     //];
 
     //$.ajax({
-    //    type: 'POST',
-    //    url: "/Account/Create",
-    //    data: { user: myData },
-    //    dataType: 'json',
+    //    type: 'post',
+    //    url: "/account/create",
+    //    data: { user: mydata },
+    //    datatype: 'json',
     //    error: function (err) {
     //        alert("error - " + err);
     //    }
     //});
-}); 
-
-
-$("#btn-login").click(function (){
-    const parameters = {
-        email : $("#inputEmail").val(),
-        password : $("#inputPassword").val()
-    }
-
-    $.ajax({
-        type: "POST",
-        url: "/Account/Login",
-        data: $.param(parameters),
-        dataType: "json",
-        success: function () { alert('Success'); },
-        error: function () {
-            alert("error");
-        }
-    });
 });
