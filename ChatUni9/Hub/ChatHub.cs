@@ -17,6 +17,7 @@ namespace ChatUni9.ChatHub
 
         public async Task SendMessage(string user ,string message)
         {
+            var users = Clients.All;
             await Clients.User(user).SendAsync("ReceiveMessage", user, message);
         }
 
