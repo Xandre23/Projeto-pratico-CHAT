@@ -1,12 +1,11 @@
 ﻿using ChatUni9.DAO.Account;
 using ChatUni9.Models;
+using ChatUni9.Security;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -29,6 +28,8 @@ namespace ChatUni9.Controllers
         {
             try
             {
+                var hash = new Hash();
+                user.Senha = hash.GenerateHashSHA512(user.Senha);
                 var accountDAO = new AccountDAO();
                 await accountDAO.Create(user);
             }
