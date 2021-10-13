@@ -36,21 +36,42 @@ namespace ChatUni9.Controllers
             {
                 throw new Exception(ex.Message);
             }
-        }    
-
+        }
+        public String msg = "";
         [HttpPost]
+
         public async Task<IActionResult> Login(string email, string password)
         {
-            var accountDAO = new AccountDAO();
-            var user = await accountDAO.Login(email, password);
 
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
-            ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(principal);
+            var accountDAO = new AccountDAO();
+
+            var user = await accountDAO.Login(email, password);
+            await accountDAO.Login(email, password);
+            if (email == user.Email && password == user.Senha)
+            {
+               
+            
+               
+
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(principal);
+
+                return Redirect("/Talk");
+                
+                
+            }
+            else
+            {
+                this.msg = "Email ou senha invalidos!!";
+
+            }
 
             return Redirect("/Talk");
         }
+
     }
+
 }

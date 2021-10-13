@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,16 @@ namespace ChatUni9.DAO.Account
     {
         public async Task<UserViewModel> Login(string email, string password)
         {
+
+            var command = new MySqlCommand();
+            command.CommandText = ("select count * from usuario where  =  @email, @senha");
+           
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@senha", password);
+            await Select(command);
+           
+
+
             var listUsers = new List<UserViewModel>();
 
             listUsers.AddRange(new List<UserViewModel>()
@@ -50,5 +61,7 @@ namespace ChatUni9.DAO.Account
 
             await Insert(command);
         }
+
+
     }
 }

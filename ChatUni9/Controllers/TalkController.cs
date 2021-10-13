@@ -8,9 +8,14 @@ namespace ChatUni9.Controllers
 {
     public class TalkController : Controller
     {
+       
         public IActionResult Index()
         {
+           
             return View();
+            
         }
+
     }
+  
 }
