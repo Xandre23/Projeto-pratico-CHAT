@@ -5,21 +5,28 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatUni9.FactoryObject.User;
 
 namespace ChatUni9.DAO.Account
 {
+    
     public class AccountDAO : ExecuteCommandMySQL
     {
         public async Task<UserViewModel> Login(string email, string password)
         {
+            
 
-            var command = new MySqlCommand();
-            command.CommandText = ("select count * from usuario where  =  @email, @senha");
+           var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where  email=@email ");
            
             command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@senha", password);
-            await Select(command);
-           
+            
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+
+
+
+
 
 
             var listUsers = new List<UserViewModel>();

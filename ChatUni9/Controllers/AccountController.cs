@@ -1,4 +1,5 @@
 ﻿using ChatUni9.DAO.Account;
+using ChatUni9.FactoryObject.User;
 using ChatUni9.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -19,10 +21,7 @@ namespace ChatUni9.Controllers
             return View();
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
+       
 
         [HttpPost]
         public async Task Create(UserViewModel user)
@@ -42,12 +41,11 @@ namespace ChatUni9.Controllers
 
         public async Task<IActionResult> Login(string email, string password)
         {
-
             var accountDAO = new AccountDAO();
 
             var user = await accountDAO.Login(email, password);
-            await accountDAO.Login(email, password);
-            if (email == user.Email && password == user.Senha)
+            
+            if (user.Email == email &&  user.Senha == password)
             {
                
             
