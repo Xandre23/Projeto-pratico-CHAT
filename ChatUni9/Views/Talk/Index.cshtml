@@ -1,268 +1,124 @@
-﻿@*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <div class="container bootstrap snippets bootdey">
-        <div class="tile tile-alt" id="messages-main">
-            <div class="ms-menu">
-                <div class="ms-user clearfix">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar pull-left">
-                    <div>Signed in as <br> m-hollaway@gmail.com</div>
-                </div>
-
-                <div class="p-15">
-                    <div class="dropdown">
-                        <a class="btn btn-primary btn-block" href="" data-toggle="dropdown">Messages <i class="caret m-l-5"></i></a>
-
-                        <ul class="dropdown-menu dm-icon w-100">
-                            <li><a href=""><i class="fa fa-envelope"></i> Messages</a></li>
-                            <li><a href=""><i class="fa fa-users"></i> Contacts</a></li>
-                            <li><a href=""><i class="fa fa-format-list-bulleted"> </i>Todo Lists</a></li>
-                        </ul>
+﻿<div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group mb-2">
+                        <a href="#" class="btn btn-outline-info form-control" data-bs-toggle="modal" data-bs-target="#modal-add-contact">
+                            <i class="fa fa-user" aria-hidden="true"></i> Adicionar Contato
+                        </a>
                     </div>
-                </div>
-
-                <div class="list-group lg-alt">
-                    <a class="list-group-item media" href="">
-                        <div class="pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
                         </div>
-                        <div class="media-body">
-                            <small class="list-group-item-heading">Davil Parnell</small>
-                            <small class="list-group-item-text c-gray">Fierent fastidii recteque ad pro</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Ann Watkinson</div>
-                            <small class="list-group-item-text c-gray">Cum sociis natoque penatibus </small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Marse Walter</div>
-                            <small class="list-group-item-text c-gray">Suspendisse sapien ligula</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="lv-avatar pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Jeremy Robbins</div>
-                            <small class="list-group-item-text c-gray">Phasellus porttitor tellus nec</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="lv-avatar pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Reginald Horace</div>
-                            <small class="list-group-item-text c-gray">Quisque consequat arcu eget</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Shark Henry</div>
-                            <small class="list-group-item-text c-gray">Nam lobortis odio et leo maximu</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Paul Van Dack</div>
-                            <small class="list-group-item-text c-gray">Nam posuere purus sed velit auctor sodales</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="lv-avatar pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">James Anderson</div>
-                            <small class="list-group-item-text c-gray">Vivamus imperdiet sagittis quam</small>
-                        </div>
-                    </a>
-
-                    <a class="list-group-item media" href="">
-                        <div class="lv-avatar pull-left">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="img-avatar">
-                        </div>
-                        <div class="media-body">
-                            <div class="list-group-item-heading">Kane Williams</div>
-                            <small class="list-group-item-text c-gray">Suspendisse justo nulla luctus nec</small>
-                        </div>
-                    </a>
-                </div>
-
-
-            </div>
-
-            <div class="ms-body">
-                <div class="action-header clearfix">
-                    <div class="visible-xs" id="ms-menu-trigger">
-                        <i class="fa fa-bars"></i>
+                        <input type="text" class="form-control" placeholder="Search...">
                     </div>
-
-                    <div class="pull-left hidden-xs">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar m-r-10">
-                        <div class="lv-avatar pull-left">
-
-                        </div>
-                        <span>David Parbell</span>
-                    </div>
-
-                    <ul class="ah-actions actions">
-                        <li>
-                            <a href="">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Vincent Porter</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>
+                            </div>
                         </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-check"></i>
-                            </a>
+                        <li class="clearfix active">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Aiden Chavez</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
                         </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-clock-o"></i>
-                            </a>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Mike Thomas</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
                         </li>
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-sort"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Latest</a>
-                                </li>
-                                <li>
-                                    <a href="">Oldest</a>
-                                </li>
-                            </ul>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Christian Kelly</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
+                            </div>
                         </li>
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-bars"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Refresh</a>
-                                </li>
-                                <li>
-                                    <a href="">Message Settings</a>
-                                </li>
-                            </ul>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Monica Ward</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Dean Henry</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
-
-                <div class="message-feed media">
-                    <div class="pull-left">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
-                    </div>
-                    <div class="media-body">
-                        <div class="mf-content">
-                            Quisque consequat arcu eget odio cursus, ut tempor arcu vestibulum. Etiam ex arcu, porta a urna non, lacinia pellentesque orci. Proin semper sagittis erat, eget condimentum sapien viverra et. Mauris volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem pulvinar lobortis.
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">Aiden Chavez</h6>
+                                    <small>Last seen: 2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                            </div>
                         </div>
-                        <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:00</small>
                     </div>
-                </div>
-
-                <div class="message-feed right">
-                    <div class="pull-right">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+                            <li class="clearfix">
+                                <div class="message-data text-right">
+                                    <span class="message-data-time">10:10 AM, Today</span>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                </div>
+                                <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:12 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Are we meeting today?</div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:15 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="media-body">
-                        <div class="mf-content">
-                            Mauris volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem pulvinar lobortis.
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter text here...">
                         </div>
-                        <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:30</small>
                     </div>
-                </div>
-
-                <div class="message-feed media">
-                    <div class="pull-left">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
-                    </div>
-                    <div class="media-body">
-                        <div class="mf-content">
-                            Etiam ex arcumentum
-                        </div>
-                        <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:33</small>
-                    </div>
-                </div>
-
-                <div class="message-feed right">
-                    <div class="pull-right">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
-                    </div>
-                    <div class="media-body">
-                        <div class="mf-content">
-                            Etiam nec facilisis lacus. Nulla imperdiet augue ullamcorper dui ullamcorper, eu laoreet sem consectetur. Aenean et ligula risus. Praesent sed posuere sem. Cum sociis natoque penatibus et magnis dis parturient montes,
-                        </div>
-                        <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 10:10</small>
-                    </div>
-                </div>
-
-                <div class="message-feed media">
-                    <div class="pull-left">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
-                    </div>
-                    <div class="media-body">
-                        <div class="mf-content">
-                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac tortor ut elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar at sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat eget
-                        </div>
-                        <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 10:24</small>
-                    </div>
-                </div>
-
-                <div class="msb-reply">
-                    <textarea placeholder="What's on your mind..."></textarea>
-                    <button><i class="fa fa-paper-plane-o"></i></button>
                 </div>
             </div>
         </div>
-    </div>*@
-<div class="container col-6">
-    <div class="form-group">
-        <label for="usuario">Usuário</label>
-        <input type="text" id="usuario" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="mensagem">Mensagem</label>
-        <textarea class="form-control" id="mensagem" rows="2"></textarea>
-    </div>
-    <input type="button" class="btn btn-primary" id="send" value="Enviar Mensagem" />
-</div>
-<div class="row">
-    <div class="col-12">
-        <hr />
     </div>
 </div>
-<div class="container col-6">
-    <ul class="list-group" id="messagesList"></ul>
-</div>
+@{await Html.RenderPartialAsync("/Views/Contact/_AddContact.cshtml"); }
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.min.js"></script>
     <script src="~/js/talk.js" asp-append-version="true"></script>
+    <script src="~/js/contact.js" asp-append-version="true"></script>
 }
