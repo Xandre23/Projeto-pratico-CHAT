@@ -1,10 +1,12 @@
-﻿<div class="container">
+﻿<div id="header-modal"> </div>
+<div class="container">
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="card chat-app">
                 <div id="plist" class="people-list">
                     <div class="input-group mb-2">
-                        <a href="#" class="btn btn-outline-info form-control" data-bs-toggle="modal" data-bs-target="#modal-add-contact">
+                        <a href="#" class="btn btn-outline-info form-control" data-bs-toggle="modal" 
+                            data-bs-target="#modal-add-contact" id="btn-add-contact">
                             <i class="fa fa-user" aria-hidden="true"></i> Adicionar Contato
                         </a>
                     </div>
@@ -115,7 +117,7 @@
         </div>
     </div>
 </div>
-@{await Html.RenderPartialAsync("/Views/Contact/_AddContact.cshtml"); }
+@*@{await Html.RenderPartialAsync("/Views/Contact/_AddContact.cshtml"); }*@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.min.js"></script>

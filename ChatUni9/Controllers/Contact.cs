@@ -12,5 +12,10 @@ namespace ChatUni9.Controllers
         {
             return View();
         }
+
+        public IActionResult Search()
+        {
+            return PartialView("/Views/Contact/_AddContact.cshtml");
+        }
     }
 }
