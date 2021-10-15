@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $("#btn-add-contact").click(function () {
-        alert("Foii");
-        ("#header-modal").load("/Account/Search");
+        $("#header-modal").load("/Contact/Search");
+        $("#modal-add-contact").modal("toggle");
     });
 });
