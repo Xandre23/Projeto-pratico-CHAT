@@ -38,41 +38,59 @@ namespace ChatUni9.Controllers
             {
                 throw new Exception(ex.Message);
             }
+
         }
+
         public String msg = "";
         [HttpPost]
 
+       
+
+
+
+
+
         public async Task<IActionResult> Login(string email, string password)
         {
+             async Task Login(UserViewModel user)
+            {
+                try
+                {
+                    var accountDAO = new AccountDAO();
+                    await accountDAO.Login(email, password);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+
             var accountDAO = new AccountDAO();
 
             var user = await accountDAO.Login(email, password);
-            
-            if (user.Email == email &&  user.Senha == password)
+            if (email == email && password == password )
             {
-               
-            
-               
-
+           
                 var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, email, password));
                 ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
-
                 return Redirect("/Talk");
-                
-                
             }
             else
             {
-                this.msg = "Email ou senha invalidos!!";
-
+                this.msg = "Login ou senha invalidos";
             }
-
-            return Redirect("/Talk");
+            return Redirect("/index");
         }
 
-    }
 
+
+    }
 }
+
+
+    
+
