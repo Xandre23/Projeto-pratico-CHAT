@@ -2,39 +2,26 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatUni9.FactoryObject.User;
 
 namespace ChatUni9.DAO.Account
 {
+
     public class AccountDAO : ExecuteCommandMySQL
     {
-        public async Task<UserViewModel> Login(string email, string password)
+        public async Task<UserViewModel> Login(string email)
         {
-            var listUsers = new List<UserViewModel>();
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where  email=@email");
+            command.Parameters.AddWithValue("@email", email);
 
-            listUsers.AddRange(new List<UserViewModel>()
-            {
-                new UserViewModel()
-                {
-                    ID = 1,
-                    Nome = "Leonardo",
-                    Email = "leonardo.amorim253@gmail.com",
-                    Senha = "123"
-                },
-                new UserViewModel()
-                {
-                    ID = 2,
-                    Nome = "Xandre",
-                    Email = "xandre@gmail.com",
-                    Senha = "123"
-                    
-                }
-            });
-
-            var user = listUsers.Where(u => u.Email == email && u.Senha == password);
-
-            return user.FirstOrDefault();
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+            return user;
         }
 
         public async Task Create(UserViewModel user)
@@ -50,5 +37,7 @@ namespace ChatUni9.DAO.Account
 
             await Insert(command);
         }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ChatUni9.DAO.Account;
+using ChatUni9.FactoryObject.User;
 using ChatUni9.Models;
 using ChatUni9.Security;
 using Microsoft.AspNetCore.Authentication;
@@ -6,6 +7,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using System.Data;
+using System.Linq;
+using System.Net;
+>>>>>>> aute-login
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -37,21 +44,44 @@ namespace ChatUni9.Controllers
             {
                 throw new Exception(ex.Message);
             }
-        }    
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<JsonResult> Login(string email, string password)
         {
-            var accountDAO = new AccountDAO();
-            var user = await accountDAO.Login(email, password);
-
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
-            ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(principal);
-
-            return Redirect("/Talk");
+            try
+            {
+                var accountDAO = new AccountDAO();
+                var user = await accountDAO.Login(email);
+                if(string.IsNullOrEmpty(user.Email))
+                {
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");                    
+                    return Json(result);
+                }
+                if (user.Senha.Equals(password))
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync(principal);
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                    return Json(result);
+                }
+                else
+                {
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Senha Incorreta");
+                    return Json(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
+
+
+
+

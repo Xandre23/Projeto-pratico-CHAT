@@ -32,7 +32,15 @@ $("#btn-login").click(function () {
         url: "/Account/Login",
         data: $.param(parameters),
         dataType: "json",
-        success: function () { alert('Success'); },
+        success: function (response) {
+            console.log(response);
+            if (response.code != 200) {
+                alert(response.message);
+            } else {
+                window.location.href = "/Talk";
+            }
+
+        },
         error: function () {
             alert("error");
         }
