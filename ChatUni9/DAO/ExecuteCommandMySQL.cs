@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace ChatUni9.DAO
 {
-    public class ExecuteCommandMySQL: ConnectionStringManager
-    {        
+    public class ExecuteCommandMySQL : ConnectionStringManager
+    {
 
         public async Task Insert(MySqlCommand command)
         {
@@ -31,7 +31,7 @@ namespace ChatUni9.DAO
             }
         }
 
-        public async Task <DataTable> Select(MySqlCommand command)
+        public async Task<DataTable> Select(MySqlCommand command)
         {
             MySqlConnection conn = new MySqlConnection(GetConnectionString());
             try
@@ -53,9 +53,7 @@ namespace ChatUni9.DAO
             {
                 await conn.CloseAsync();
             }
-        
-
-    }
+        }
 
         public async Task Update(MySqlCommand command)
         {

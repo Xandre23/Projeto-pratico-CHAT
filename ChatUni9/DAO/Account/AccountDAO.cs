@@ -9,51 +9,19 @@ using ChatUni9.FactoryObject.User;
 
 namespace ChatUni9.DAO.Account
 {
-    
+
     public class AccountDAO : ExecuteCommandMySQL
     {
-        public async Task<UserViewModel> Login(string email, string password)
+        public async Task<UserViewModel> Login(string email)
         {
-            
-
-           var command = new MySqlCommand();
-            command.CommandText = ("select * from usuario where  email=@email ");
-
-            
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where  email=@email");
             command.Parameters.AddWithValue("@email", email);
-            
+
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
-
-
-
-
-
-
-            var listUsers = new List<UserViewModel>();
-
-            listUsers.AddRange(new List<UserViewModel>()
-            {
-                new UserViewModel()
-                {
-                    ID = 1,
-                    Nome = "Leonardo",
-                    Email = "leonardo.amorim253@gmail.com",
-                    Senha = "123"
-                },
-                new UserViewModel()
-                {
-                    ID = 2,
-                    Nome = "Xandre",
-                    Email = "xandre@gmail.com",
-                    Senha = "123"
-                    
-                }
-            });
-
-            var user = listUsers.Where(u => u.Email == email && u.Senha == password);
-
-            return user.FirstOrDefault();
+            var user = factoryUser.Factory(dataTable);
+            return user;
         }
 
         public async Task Create(UserViewModel user)
