@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-=======
+using System.Net;
+
 using System.Data;
 using System.Linq;
 using System.Net;
->>>>>>> aute-login
+
 using System.Security.Claims;
 using System.Threading.Tasks;
 
