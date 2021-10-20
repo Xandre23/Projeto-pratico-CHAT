@@ -1,5 +1,4 @@
 ﻿using ChatUni9.DAO.Account;
-using ChatUni9.FactoryObject.User;
 using ChatUni9.Models;
 using ChatUni9.Security;
 using Microsoft.AspNetCore.Authentication;
@@ -7,12 +6,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Net;
 
 using System.Data;
 using System.Linq;
 using System.Net;
 
+=======
+using System.Net;
+>>>>>>> d0764d5c550ecf2a08dcb501f5a29661661b0928
 using System.Security.Claims;
 using System.Threading.Tasks;
 
