@@ -24,7 +24,6 @@ namespace ChatUni9
                 .GetSection("ConnectionStrings")
                 .GetSection("DefaultConnection")
                 .Value;
-
             return connectionString;
         }        
     }
