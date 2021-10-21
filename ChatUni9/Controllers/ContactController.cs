@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
 {
-    public class Contact : Controller
+    public class ContactController : Controller
     {
         public IActionResult Index()
         {
