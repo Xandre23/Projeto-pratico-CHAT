@@ -4,12 +4,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 $("#send").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-
-    console.log("menssage ", message);
-    var msg = message.replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">");
-    var li = $("<li></li>").text(user + ": " + msg);
-    li.addClass("list-group-item");
-    $("#messagesList").append(li);
+    makeHTMLMessageReceive(getHour(), getDate(), message);
 });
 
 connection.start().then(function () {
@@ -28,6 +23,7 @@ $("#send").on("click", function (event) {
         return console.error(err.toString());
     });
     event.preventDefault();
+    $("#txt-menssage").val("");
 });
 
 function getDate() {
@@ -45,23 +41,35 @@ function getHour() {
 }
 
 function makeHTMLMessageSent(hour, formattedDate, message) {
-    const spanMessageDateTime = jQuery("<span>", {
+    const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
+
+    const divMessageData = factoryDivMessageData();
+    divMessageData.append(spanMessageDateTime);
+
+    const divMessage = factoryDivMessage("message other-message float-right", message);
+
+    const li = factoryLI();
+    li.append(divMessageData, divMessage);
+    $("ul.chat-list-messages").append(li);
+}
+
+function factorySpanMessageDateTime(hour, formattedDate) {
+    return jQuery("<span>", {
         "class": "message-data-time",
         "text": `${hour.format(new Date())} - ${formattedDate}`
     });
+}
 
-    const divMessageData = jQuery("<div>", {
-        "class": "message-data text-right"
-    }).append(spanMessageDateTime);
+function makeHTMLMessageReceive(hour, formattedDate, message) {
+    const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
 
-    const divMessage = jQuery("<div>", {
-        "class": "message other-message float-right",
-        "text": message
-    });
+    const divMessageData = factoryDivMessageData();
+    divMessageData.append(spanMessageDateTime);
 
-    const li = jQuery("<li>", {
-        "class": "clearfix"
-    }).append(divMessageData, divMessage);
+    const divMessage = factoryDivMessage("message my-message", message);
+
+    const li = factoryLI();
+    li.append(divMessageData, divMessage);
 
     $("ul.chat-list-messages").append(li);
 }
@@ -87,3 +95,22 @@ $(".contact").click(function () {
         }
     });
 });
+
+function factoryLI() {
+    return jQuery("<li>", {
+        "class": "clearfix"
+    });
+}
+
+function factoryDivMessage(classCss, message) {
+    return jQuery("<div>", {
+        "class": classCss,
+        "text": message
+    });
+}
+
+function factoryDivMessageData() {
+    return jQuery("<div>", {
+        "class": "message-data"
+    });
+}
