@@ -69,7 +69,11 @@ function makeHTMLMessageSent(hour, formattedDate, message) {
 $(".contact").click(function () {
     const userID = {
         userID: $(this).data("userid")
-    }
+    };
+
+    $(".chat-list li").removeClass("active");
+    $(this).addClass("active");
+
     $.ajax({
         type: "get",
         url: "/Talk/Talk",
