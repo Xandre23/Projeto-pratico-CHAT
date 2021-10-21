@@ -10,12 +10,14 @@ namespace ChatUni9.Controllers
     {
        
         public IActionResult Index()
-        {
-           
-            return View();
-            
+        {           
+            return View();            
         }
-
+        [HttpGet]
+        public IActionResult Talk(int userID)
+        {
+            return PartialView("/Views/Talk/_Talk.cshtml");
+        }
     }
   
 }

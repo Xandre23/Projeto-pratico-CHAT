@@ -65,3 +65,18 @@ function makeHTMLMessageSent(hour, formattedDate, message) {
 
     $("ul.chat-list-messages").append(li);
 }
+
+$(".contact").click(function () {
+    $.ajax({
+        type: "get",
+        url: "/Talk/Talk",
+        data: $(this).data("userid"),
+        datatype: "json",
+        success: function (html) {
+            $("#talk").html(html);
+        },
+        error: function () {
+            alert('error');
+        }
+    });
+});
