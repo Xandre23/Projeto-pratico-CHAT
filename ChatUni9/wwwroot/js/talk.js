@@ -67,10 +67,13 @@ function makeHTMLMessageSent(hour, formattedDate, message) {
 }
 
 $(".contact").click(function () {
+    const userID = {
+        userID: $(this).data("userid")
+    }
     $.ajax({
         type: "get",
         url: "/Talk/Talk",
-        data: $(this).data("userid"),
+        data: userID,
         datatype: "json",
         success: function (html) {
             $("#talk").html(html);
