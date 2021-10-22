@@ -64,7 +64,7 @@ namespace ChatUni9.Controllers
                     return Json(response);
                 }
                 var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.ID.ToString()));
                 ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
