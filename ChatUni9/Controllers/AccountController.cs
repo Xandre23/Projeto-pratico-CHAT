@@ -77,8 +77,8 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [HttpPost]
-        public async Task GetTaskAsync(string nome)
+        //[HttpPost]
+       /* public async Task GetTaskAsync(string nome)
         {
             try
             {
@@ -103,10 +103,10 @@ namespace ChatUni9.Controllers
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }
+            }*/
         }
     }
-}
+
 
 
 
