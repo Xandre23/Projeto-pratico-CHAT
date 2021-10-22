@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Logging;
+using ChatUni9.DAO.Talk;
 using ChatUni9.Models;
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -8,7 +9,7 @@ namespace ChatUni9.ChatHub
 {
     public class ChatHub: Hub
     {
-
+        const TalkDAO talkDAO = new TalkDAO();
         public ILogger Logger { get; set; }
 
         public ChatHub()
@@ -18,6 +19,7 @@ namespace ChatUni9.ChatHub
 
         public async Task SendMessage(string user ,string message)
         {
+            talkDAO.InsetMessage(new TalkViewModel());
             await Clients.User(user).SendAsync("ReceiveMessage", user, message);
         }
 
