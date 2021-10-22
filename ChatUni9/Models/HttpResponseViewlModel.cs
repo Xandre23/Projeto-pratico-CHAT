@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ChatUni9.Models
+﻿namespace ChatUni9.Models
 {
-    public class HttpResponse
+    public class HttpResponseViewlModel
     {       
         public int Code { get; set; }
         public string Message { get; set; }
-        public HttpResponse(int code, string message)
+        public HttpResponseViewlModel(int code, string message)
         {
             Code = code;
             Message = message;
