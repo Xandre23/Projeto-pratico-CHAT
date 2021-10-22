@@ -37,7 +37,5 @@ namespace ChatUni9.DAO.Account
 
             await Insert(command);
         }
-
-
     }
 }
