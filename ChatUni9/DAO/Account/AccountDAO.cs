@@ -37,6 +37,20 @@ namespace ChatUni9.DAO.Account
 
             await Insert(command);
         }
+        
+
+        public async Task<UserViewModel> Search(string Nome)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where  nome");
+            command.Parameters.AddWithValue("@nome", Nome);
+            
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+            
+            return user;
+        }
 
 
     }

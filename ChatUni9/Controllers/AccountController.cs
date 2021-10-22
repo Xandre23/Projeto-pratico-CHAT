@@ -51,9 +51,9 @@ namespace ChatUni9.Controllers
             {
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
-                if(string.IsNullOrEmpty(user.Email))
+                if (string.IsNullOrEmpty(user.Email))
                 {
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");                    
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
                 }
                 if (user.Senha.Equals(password))
@@ -77,8 +77,37 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        [HttpPost]
+        public async Task GetTaskAsync(string nome)
+        {
+            try
+            {
+                var accountDAO = new AccountDAO();
+                var user = await accountDAO.Search(nome);
+              
+                if (user.Nome.Contains(nome))
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Nome));
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                    
+                }
+                
+                else
+                {
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Nome não encontrado");
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
+
 
 
 
