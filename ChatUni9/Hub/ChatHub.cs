@@ -9,7 +9,7 @@ namespace ChatUni9.ChatHub
 {
     public class ChatHub: Hub
     {
-        const TalkDAO talkDAO = new TalkDAO();
+        TalkDAO talkDAO = new TalkDAO();
         public ILogger Logger { get; set; }
 
         public ChatHub()
@@ -17,10 +17,23 @@ namespace ChatUni9.ChatHub
             Logger = NullLogger.Instance;
         }
 
-        public async Task SendMessage(string user ,string message)
+        public async Task SendMessage(string user, string message)
         {
-            talkDAO.InsetMessage(new TalkViewModel());
-            await Clients.User(user).SendAsync("ReceiveMessage", user, message);
+            var userIsLoggedIn = ConnectedUserViewModel.Ids.Contains(user);
+            if (!userIsLoggedIn)
+            {
+                var talkViewModel = new TalkViewModel();
+                talkViewModel.IDUserIssuer = Convert.ToInt32(Context.UserIdentifier);
+                talkViewModel.IDUserReceiver = Convert.ToInt32(user);
+                talkViewModel.Menssage = message;
+                talkViewModel.DateTime = DateTime.Now;
+                talkViewModel.Visualized = false;
+                await talkDAO.InsetMessage(talkViewModel);
+            }
+            else
+            {
+                await Clients.User(user).SendAsync("ReceiveMessage", user, message);
+            }
         }
 
         public override async Task OnConnectedAsync()

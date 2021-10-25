@@ -14,7 +14,7 @@ connection.start().then(function () {
 });
 
 $("#send").on("click", function (event) {
-    var user = "leonardo@gmail.com";
+    var user = "26";
     var message = $("#txt-menssage").val();
 
     makeHTMLMessageSent(getHour(), getDate(), message);
