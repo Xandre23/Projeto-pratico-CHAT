@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChatUni9.DAO;
+using ChatUni9.DAO.Account;
+using ChatUni9.FactoryObject.User;
+using ChatUni9.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
@@ -13,9 +21,44 @@ namespace ChatUni9.Controllers
             return View();
         }
 
-        public IActionResult Search()
+        public async Task<IActionResult> SearchAsync(string? name)
         {
-            return PartialView("/Views/Contact/_AddContact.cshtml");
+            name = "a";
+            try
+            {
+                var accountDAO = new AccountDAO();
+                var user = await accountDAO.Search(name);
+
+
+                return PartialView("/Views/Contact/_AddContact.cshtml",user);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+

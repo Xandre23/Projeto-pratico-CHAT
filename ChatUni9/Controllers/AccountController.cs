@@ -7,10 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -54,6 +50,13 @@ namespace ChatUni9.Controllers
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
                 if (string.IsNullOrEmpty(user.Email))
+
+                {
+                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
+                    return Json(result);
+                }
+                if (user.Senha.Equals(password))
+
                 {
                     var response = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(response);
@@ -78,6 +81,8 @@ namespace ChatUni9.Controllers
         }
     }
 }
+
+
 
 
 

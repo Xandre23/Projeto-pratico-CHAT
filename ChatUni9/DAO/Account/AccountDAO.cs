@@ -21,7 +21,7 @@ namespace ChatUni9.DAO.Account
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
             var user = factoryUser.Factory(dataTable);
-            return user;
+            return user.FirstOrDefault();
         }
 
         public async Task Create(UserViewModel user)
@@ -37,5 +37,23 @@ namespace ChatUni9.DAO.Account
 
             await Insert(command);
         }
+
+
+
+        public async  Task<IList<UserViewModel>> Search(string nome)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where nome like @nome");
+            command.Parameters.AddWithValue("@nome","%"+nome+"%");
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+
+            return user;
+        }
+
+
     }
 }
+

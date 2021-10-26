@@ -1,4 +1,5 @@
-﻿<div class="modal fade" id="modal-add-contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿@model IList<ChatUni9.Models.UserViewModel>
+<div class="modal fade" id="modal-add-contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,19 +16,22 @@
                 <div>
                     <div id="" class="people-list">
                         <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Vincent Porter</div>
-                                    <a href="#" class="btn btn-outline-success btn-sm form-control">
-                                        <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
-                                    </a>
-                                </div>
-                            </li>
+                            @foreach (var user in Model)
+                            {
+                                <li class="clearfix">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                    <div class="about">
+                                        <div class="name">@user.Nome</div>
+                                        <a href="#" class="btn btn-outline-success btn-sm form-control">
+                                            <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
                             <li class="clearfix">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                                 <div class="about">
-                                    <div class="name">Vincent Porter</div>
+                                    <div class="name"></div>
                                     <a href="#" class="btn btn-outline-danger btn-sm form-control">
                                         <div><i class="fa fa-trash-o" aria-hidden="true"></i>Remover</div>
                                     </a>
@@ -36,8 +40,8 @@
                             <li class="clearfix">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
                                 <div class="about">
-                                    <div class="name">Mike Thomas</div>
-                                    <div class="name">Vincent Porter</div>
+                                    <div class="name"></div>
+                                    <div class="name"></div>
                                     <a href="#" class="btn btn-outline-success btn-sm form-control">
                                         <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
                                     </a>
@@ -46,7 +50,7 @@
                             <li class="clearfix">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 <div class="about">
-                                    <div class="name">Christian Kelly</div>
+                                    <div class="name"></div>
                                     <a href="#" class="btn btn-outline-success btn-sm form-control">
                                         <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
                                     </a>
@@ -55,7 +59,7 @@
                             <li class="clearfix">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
                                 <div class="about">
-                                    <div class="name">Monica Ward</div>
+                                    <div class="name"></div>
                                     <a href="#" class="btn btn-outline-success btn-sm form-control">
                                         <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
                                     </a>
