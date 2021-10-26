@@ -18,8 +18,7 @@ namespace ChatUni9.Controllers
         public IActionResult Talk(int userID)
         {
             var talkDAO = new TalkDAO();
-            var listTalk = talkDAO.GetMessages(userID);
-            return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
+            return PartialView("/Views/Talk/_Talk.cshtml");
         }
     }
   
