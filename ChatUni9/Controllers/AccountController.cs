@@ -58,20 +58,20 @@ namespace ChatUni9.Controllers
                 if (user.Senha.Equals(password))
 
                 {
-                    var response = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
+                    var response = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(response);
                 }
                 if (!user.Senha.Equals(hashedPassword))
                 {
-                    var response = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Senha Incorreta");
+                    var response = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Senha Incorreta");
                     return Json(response);
                 }
                 var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.ID.ToString()));
                 ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
-                var httpResponse = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                var httpResponse = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
                 return Json(httpResponse);
             }
             catch (Exception ex)

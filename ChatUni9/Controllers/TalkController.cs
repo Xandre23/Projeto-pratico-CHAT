@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChatUni9.DAO.Talk;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,16 @@ namespace ChatUni9.Controllers
     {
        
         public IActionResult Index()
-        {
-           
-            return View();
-            
+        {           
+            return View();            
         }
-
+        [HttpGet]
+        public IActionResult Talk(int userID)
+        {
+            var talkDAO = new TalkDAO();
+            var listTalk = talkDAO.GetMessages(userID);
+            return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
+        }
     }
   
 }

@@ -1,10 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChatUni9.DAO
@@ -12,7 +8,7 @@ namespace ChatUni9.DAO
     public class ExecuteCommandMySQL : ConnectionStringManager
     {
 
-        public async Task Insert(MySqlCommand command)
+        protected async Task Insert(MySqlCommand command)
         {
             MySqlConnection conn = new MySqlConnection(GetConnectionString());
             try
@@ -31,7 +27,7 @@ namespace ChatUni9.DAO
             }
         }
 
-        public async Task<DataTable> Select(MySqlCommand command)
+        protected async Task<DataTable> Select(MySqlCommand command)
         {
             MySqlConnection conn = new MySqlConnection(GetConnectionString());
             try
@@ -55,12 +51,12 @@ namespace ChatUni9.DAO
             }
         }
 
-        public async Task Update(MySqlCommand command)
+        protected async Task Update(MySqlCommand command)
         {
 
         }
 
-        public async Task Delete(MySqlCommand command)
+        protected async Task Delete(MySqlCommand command)
         {
 
         }
