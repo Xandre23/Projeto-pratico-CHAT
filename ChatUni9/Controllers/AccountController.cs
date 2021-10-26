@@ -49,28 +49,35 @@ namespace ChatUni9.Controllers
         {
             try
             {
+                var hash = new Hash();
+                string hashedPassword = hash.GenerateHashSHA512(password);
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
                 if (string.IsNullOrEmpty(user.Email))
+<<<<<<< HEAD
                 {
                     var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
                 }
                 if (user.Senha.Equals(password))
+=======
+>>>>>>> 384e0572427610db6645ff305511d8cf34e33e9c
                 {
-                    var claims = new List<Claim>();
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                    await HttpContext.SignInAsync(principal);
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
-                    return Json(result);
+                    var response = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
+                    return Json(response);
                 }
-                else
+                if (!user.Senha.Equals(hashedPassword))
                 {
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Senha Incorreta");
-                    return Json(result);
+                    var response = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Senha Incorreta");
+                    return Json(response);
                 }
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(principal);
+                var httpResponse = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                return Json(httpResponse);
             }
             catch (Exception ex)
             {
