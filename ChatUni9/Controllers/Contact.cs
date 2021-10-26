@@ -14,56 +14,49 @@ using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
 {
-    public class Contact : Controller
+    public class ContactController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Search()
+        public async Task<IActionResult> SearchAsync(string? name)
         {
-            return PartialView("/Views/Contact/_AddContact.cshtml");
-
-        }
-        public class AccountController : Controller
-        {
-
-
-            public async Task<JsonResult> Search(string nome)
+            name = "a";
+            try
             {
-                try
-                {
-                    var accountDAO = new AccountDAO();
-                    var user = await accountDAO.Search(nome);
+                var accountDAO = new AccountDAO();
+                var user = await accountDAO.Search(name);
 
-                    if (user.Nome.Contains(nome))
-                    {
-                        var claims = new List<Claim>();
-                        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Nome));
-                        ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
-                        return Json(nome);
-                    }
 
-                    else
-                    {
-                        var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Nome não encontrado");
-                        return Json(result);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                return PartialView("/Views/Contact/_AddContact.cshtml",user);
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
-}
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
 
 
 
