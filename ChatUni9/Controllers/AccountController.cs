@@ -54,14 +54,13 @@ namespace ChatUni9.Controllers
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
                 if (string.IsNullOrEmpty(user.Email))
-<<<<<<< HEAD
+
                 {
                     var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
                 }
                 if (user.Senha.Equals(password))
-=======
->>>>>>> 384e0572427610db6645ff305511d8cf34e33e9c
+
                 {
                     var response = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(response);
