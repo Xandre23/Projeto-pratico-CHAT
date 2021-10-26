@@ -52,7 +52,7 @@ namespace ChatUni9.Controllers
                 if (string.IsNullOrEmpty(user.Email))
 
                 {
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
+                    var result = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
                 }
                 if (user.Senha.Equals(password))
