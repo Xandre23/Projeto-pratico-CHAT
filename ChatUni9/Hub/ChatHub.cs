@@ -20,20 +20,22 @@ namespace ChatUni9.ChatHub
         public async Task SendMessage(string user, string message)
         {
             var userIsLoggedIn = ConnectedUserViewModel.Ids.Contains(user);
-            if (!userIsLoggedIn)
+            var talkViewModel = new TalkViewModel();
+            talkViewModel.IDUserIssuer = Convert.ToInt32(Context.UserIdentifier);
+            talkViewModel.IDUserReceiver = Convert.ToInt32(user);
+            talkViewModel.Menssage = message;
+            talkViewModel.DateTime = DateTime.Now;            
+
+            if (userIsLoggedIn)
             {
-                var talkViewModel = new TalkViewModel();
-                talkViewModel.IDUserIssuer = Convert.ToInt32(Context.UserIdentifier);
-                talkViewModel.IDUserReceiver = Convert.ToInt32(user);
-                talkViewModel.Menssage = message;
-                talkViewModel.DateTime = DateTime.Now;
-                talkViewModel.Visualized = false;
-                await talkDAO.InsetMessage(talkViewModel);
+                talkViewModel.Visualized = true;
+                await Clients.User(user).SendAsync("ReceiveMessage", user, message);
             }
             else
             {
-                await Clients.User(user).SendAsync("ReceiveMessage", user, message);
+                talkViewModel.Visualized = false;                
             }
+            await talkDAO.InsetMessage(talkViewModel);
         }
 
         public override async Task OnConnectedAsync()

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChatUni9.DAO.Talk;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace ChatUni9.Controllers
         [HttpGet]
         public IActionResult Talk(int userID)
         {
-            return PartialView("/Views/Talk/_Talk.cshtml");
+            var talkDAO = new TalkDAO();
+            var listTalk = talkDAO.GetMessages(userID);
+            return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
         }
     }
   
