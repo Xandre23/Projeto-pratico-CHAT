@@ -1,6 +1,17 @@
 ﻿$(document).ready(function () {
     $("#btn-add-contact").click(function () {
-        $("#header-modal").load("/Contact/Search");
-        $("#modal-add-contact").modal("toggle");
+        $.ajax({
+            type: "get",
+            url: "/Contact/Search",
+            datatype: "json",
+            success: function (html) {
+                $("#header-modal").html(html);
+                 $("#modal-add-contact").modal("toggle");
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+
     });
 });
