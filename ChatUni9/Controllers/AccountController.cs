@@ -7,10 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -83,35 +79,8 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        //[HttpPost]
-       /* public async Task GetTaskAsync(string nome)
-        {
-            try
-            {
-                var accountDAO = new AccountDAO();
-                var user = await accountDAO.Search(nome);
-              
-                if (user.Nome.Contains(nome))
-                {
-                    var claims = new List<Claim>();
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Nome));
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
-                    
-                }
-                
-                else
-                {
-                    var result = new HttpResponse(Convert.ToInt32(HttpStatusCode.BadRequest), "Nome não encontrado");
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }*/
-        }
     }
+}
 
 
 
