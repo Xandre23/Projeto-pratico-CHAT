@@ -9,16 +9,19 @@ namespace ChatUni9.FactoryObject.Talk
 {
     public class FactoryTalk
     {
-        public IList<TalkViewModel> Factory(DataTable dataTable)
+        public UserViewModel Factory(DataTable dataTable)
         {
-            var listTalk = new List<TalkViewModel>();
+            var listTalk = new UserViewModel();
             foreach (DataRow item in dataTable.Rows)
             {
-                listTalk.Add(new TalkViewModel() { 
+                listTalk.Nome = Convert.ToString(item["nome"]);
+                listTalk.Sobrenome = Convert.ToString(item["nome"]);
+                listTalk.Talk.Add(new TalkViewModel()
+                {
                     ID = Convert.ToInt32(item["id"]),
                     IDUserIssuer = Convert.ToInt32(item["id_usuario_emissor"]),
                     IDUserReceiver = Convert.ToInt32(item["id_usuario_emissor"]),
-                    Menssage = Convert.ToString(item["message"]),
+                    Message = Convert.ToString(item["mensagem"]),
                     DateTime = Convert.ToDateTime(item["data_hora"]),
                     Visualized = Convert.ToBoolean(item["visualizado"])
                 });
