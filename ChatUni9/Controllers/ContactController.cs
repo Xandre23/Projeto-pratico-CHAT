@@ -30,7 +30,7 @@ namespace ChatUni9.Controllers
                 var user = await accountDAO.Search(name);
 
 
-                return PartialView("/Views/Contact/_AddContact.cshtml",user);
+                return PartialView("/Views/Contact/_AddContact.cshtml", user);
 
             }
             catch (Exception ex)
@@ -52,13 +52,4 @@ namespace ChatUni9.Controllers
 
 
 
-        }
-
-
-
-
-
-
-
-
-
+}
