@@ -43,7 +43,7 @@ function getHour() {
 function makeHTMLMessageSent(hour, formattedDate, message) {
     const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
 
-    const divMessageData = factoryDivMessageData();
+    const divMessageData = factoryDivMessageData("message-data text-right");
     divMessageData.append(spanMessageDateTime);
 
     const divMessage = factoryDivMessage("message other-message float-right", message);
@@ -63,7 +63,7 @@ function factorySpanMessageDateTime(hour, formattedDate) {
 function makeHTMLMessageReceive(hour, formattedDate, message) {
     const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
 
-    const divMessageData = factoryDivMessageData();
+    const divMessageData = factoryDivMessageData("message-data");
     divMessageData.append(spanMessageDateTime);
 
     const divMessage = factoryDivMessage("message my-message", message);
@@ -109,8 +109,8 @@ function factoryDivMessage(classCss, message) {
     });
 }
 
-function factoryDivMessageData() {
+function factoryDivMessageData(classCss) {
     return jQuery("<div>", {
-        "class": "message-data"
+        "class": classCss
     });
 }
