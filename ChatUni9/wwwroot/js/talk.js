@@ -12,8 +12,7 @@ connection.start().then(function () {
 }).catch(function (err) {
     return console.error(err.toString());
 });
-
-$("#send").on("click", function (event) {
+$(document).on('click', '#send', function (event) {
     var user = "25";
     var message = $("#txt-menssage").val();
 
@@ -25,6 +24,7 @@ $("#send").on("click", function (event) {
     event.preventDefault();
     $("#txt-menssage").val("");
 });
+
 
 function getDate() {
     const date = new Date();
@@ -88,7 +88,7 @@ $(".contact").click(function () {
         data: userID,
         datatype: "json",
         success: function (html) {
-            $("#talk").html(html);
+            $(".chat").html(html);
         },
         error: function () {
             alert('error');

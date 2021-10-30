@@ -19,7 +19,8 @@ namespace ChatUni9.Controllers
         public async Task< IActionResult> Talk(int userID)
         {
             var talkDAO = new TalkDAO();
-            int loggedInUserID = Convert.ToInt32( this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+            int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+            ViewBag.LoggedInUserID = loggedInUserID;
             var listTalk = await talkDAO.GetMessages(userID, loggedInUserID);
             return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
         }
