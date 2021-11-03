@@ -8,9 +8,9 @@
             </div>
             <div class="modal-body">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search" />
+                    <input class="form-control" type="text" name="inputSearch" id="campo_busca" placeholder="Search" />
                     <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-primary" type="submit" id="btn-search">Search</button>
                     </div>
                 </div>
                 <div>
@@ -22,6 +22,7 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                     <div class="about">
                                         <div class="name">@user.Nome</div>
+                                        <div class="sobrenome">@user.Sobrenome</div>
                                         <a href="#" class="btn btn-outline-success btn-sm form-control">
                                             <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
                                         </a>
@@ -84,3 +85,7 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="~/js/account.js" asp-append-version="true"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
