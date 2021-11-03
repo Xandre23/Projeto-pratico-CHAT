@@ -20,17 +20,20 @@ namespace ChatUni9.Controllers
         {
             return View();
         }
-
-        public async Task<IActionResult> SearchAsync(string? name)
+        [HttpGet]
+        public async Task<IActionResult> Search(string name)
         {
-            name = "a";
+          
             try
             {
+                if(string.IsNullOrEmpty(name)){
+                    name = "a";
+                }
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Search(name);
 
 
-                return PartialView("/Views/Contact/_AddContact.cshtml",user);
+                return PartialView("/Views/Contact/_AddContact.cshtml", user);
 
             }
             catch (Exception ex)
@@ -52,13 +55,4 @@ namespace ChatUni9.Controllers
 
 
 
-        }
-
-
-
-
-
-
-
-
-
+}

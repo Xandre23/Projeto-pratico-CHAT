@@ -15,3 +15,21 @@
 
     });
 });
+$(document).on('click', '#btn-search', function (event) {
+    var filter = {
+        name: $("#campo_busca").val()
+    }
+
+    $.ajax({
+        method: "GET",
+        url: "/Contact/Search",
+        datatype: "json",
+        data: filter,
+        success: function (html) {
+            $("#header-modal").html(html);
+            $("#modal-add-contact").modal("toggle");
+        }
+    });
+});
+
+
