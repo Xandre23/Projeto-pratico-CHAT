@@ -47,21 +47,3 @@ $("#btn-login").click(function () {
     });
 });
 
-$('#btn-search').click(function () {
-    var user = {
-        name: $("#campo_busca").val(),
-        sobrenome: $("#campo_busca").val()
-    }
-      
-    
-
-        $.ajax({
-            url: "/Account/Search",
-            method: "POST",
-            data: "name=" + $('#campo_busca').attr('value'),
-            data: "sobrenome=" + $('#campo_busca').attr('value'),
-            success: function (user) {
-                $('#resultado').append(user);
-            }
-        });
-});
