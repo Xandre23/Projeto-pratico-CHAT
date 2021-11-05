@@ -15,7 +15,7 @@ namespace ChatUni9.DAO.Account
         public async Task<UserViewModel> Login(string email)
         {
             var command = new MySqlCommand();
-            command.CommandText = ("select * from usuario where  email=@email");
+            command.CommandText = ("select * from usuario where email=@email");
             command.Parameters.AddWithValue("@email", email);
 
             var dataTable = await Select(command);
