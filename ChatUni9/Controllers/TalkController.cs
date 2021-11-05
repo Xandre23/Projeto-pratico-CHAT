@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
@@ -15,10 +16,13 @@ namespace ChatUni9.Controllers
             return View();            
         }
         [HttpGet]
-        public IActionResult Talk(int userID)
+        public async Task< IActionResult> Talk(int userID)
         {
             var talkDAO = new TalkDAO();
-            return PartialView("/Views/Talk/_Talk.cshtml");
+            int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+            ViewBag.LoggedInUserID = loggedInUserID;
+            var listTalk = await talkDAO.GetMessages(userID, loggedInUserID);
+            return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
         }
     }
   

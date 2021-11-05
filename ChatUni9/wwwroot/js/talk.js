@@ -12,9 +12,8 @@ connection.start().then(function () {
 }).catch(function (err) {
     return console.error(err.toString());
 });
-
-$("#send").on("click", function (event) {
-    var user = "26";
+$(document).on('click', '#send', function (event) {
+    var user = "25";
     var message = $("#txt-menssage").val();
 
     makeHTMLMessageSent(getHour(), getDate(), message);
@@ -25,6 +24,7 @@ $("#send").on("click", function (event) {
     event.preventDefault();
     $("#txt-menssage").val("");
 });
+
 
 function getDate() {
     const date = new Date();
@@ -43,7 +43,7 @@ function getHour() {
 function makeHTMLMessageSent(hour, formattedDate, message) {
     const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
 
-    const divMessageData = factoryDivMessageData();
+    const divMessageData = factoryDivMessageData("message-data text-right");
     divMessageData.append(spanMessageDateTime);
 
     const divMessage = factoryDivMessage("message other-message float-right", message);
@@ -63,7 +63,7 @@ function factorySpanMessageDateTime(hour, formattedDate) {
 function makeHTMLMessageReceive(hour, formattedDate, message) {
     const spanMessageDateTime = factorySpanMessageDateTime(hour, formattedDate);
 
-    const divMessageData = factoryDivMessageData();
+    const divMessageData = factoryDivMessageData("message-data");
     divMessageData.append(spanMessageDateTime);
 
     const divMessage = factoryDivMessage("message my-message", message);
@@ -88,7 +88,7 @@ $(".contact").click(function () {
         data: userID,
         datatype: "json",
         success: function (html) {
-            $("#talk").html(html);
+            $(".chat").html(html);
         },
         error: function () {
             alert('error');
@@ -109,8 +109,8 @@ function factoryDivMessage(classCss, message) {
     });
 }
 
-function factoryDivMessageData() {
+function factoryDivMessageData(classCss) {
     return jQuery("<div>", {
-        "class": "message-data"
+        "class": classCss
     });
 }

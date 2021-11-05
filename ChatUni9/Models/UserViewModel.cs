@@ -1,4 +1,6 @@
-﻿namespace ChatUni9.Models
+﻿using System.Collections.Generic;
+
+namespace ChatUni9.Models
 {
     public class UserViewModel
     {
@@ -10,5 +12,10 @@
         public string Sexo { get; set; }
         public string TokenGoogle { get; }
         public string TokenFacebook { get; set; }
-    }   
+        public IList<TalkViewModel> Talk { get; set; }
+        public UserViewModel()
+        {
+            Talk = new List<TalkViewModel>();
+        }
+    }
 }
