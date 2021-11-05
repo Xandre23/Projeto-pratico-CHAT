@@ -1,4 +1,5 @@
 ﻿using ChatUni9.DAO.Talk;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
 {
+    [Authorize]
     public class TalkController : Controller
-    {
-       
+    {       
         public IActionResult Index()
         {           
             return View();            
@@ -24,6 +25,5 @@ namespace ChatUni9.Controllers
             var listTalk = await talkDAO.GetMessages(userID, loggedInUserID);
             return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
         }
-    }
-  
+    }  
 }
