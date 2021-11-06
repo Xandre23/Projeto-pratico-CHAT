@@ -7,6 +7,7 @@
         Sexo: $("#inputSexo option:selected").val(),
         tokengoogle: "",
         tokenfacebook: ""
+        
     }
 
     $.ajax({
@@ -25,6 +26,7 @@ $("#btn-login").click(function () {
     const parameters = {
         email: $("#inputEmail").val(),
         password: $("#inputPassword").val()
+        
     }
 
     $.ajax({
@@ -46,4 +48,7 @@ $("#btn-login").click(function () {
         }
     });
 });
+
+
+
 

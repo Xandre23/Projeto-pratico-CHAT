@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using ChatUni9.FactoryObject.User;
+using System.Security.Claims;
 
 namespace ChatUni9.DAO.Account
 {
@@ -52,6 +53,7 @@ namespace ChatUni9.DAO.Account
 
             return user;
         }
+        
 
 
     }
