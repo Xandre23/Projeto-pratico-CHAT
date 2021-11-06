@@ -7,7 +7,7 @@
             datatype: "json",
             success: function (html) {
                 $("#header-modal").html(html);
-                 $("#modal-add-contact").modal("toggle");
+                $("#modal-add-contact").modal("toggle");
             },
             error: function () {
                 alert('error');

@@ -3,6 +3,7 @@ using ChatUni9.DAO.Account;
 using ChatUni9.FactoryObject.User;
 using ChatUni9.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace ChatUni9.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         public IActionResult Index()
@@ -22,8 +24,7 @@ namespace ChatUni9.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Search(string name)
-        {
-          
+        {          
             try
             {
                 if(string.IsNullOrEmpty(name)){
@@ -32,14 +33,13 @@ namespace ChatUni9.Controllers
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Search(name);
 
-
                 return PartialView("/Views/Contact/_AddContact.cshtml", user);
-
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+
         }
         [HttpPost]
         public async Task SendSolitation(int ID)
@@ -58,18 +58,8 @@ namespace ChatUni9.Controllers
 
         }
 
+
+        }        
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

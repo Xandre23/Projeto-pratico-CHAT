@@ -23,7 +23,7 @@ namespace ChatUni9.ChatHub
             var talkViewModel = new TalkViewModel();
             talkViewModel.IDUserIssuer = Convert.ToInt32(Context.UserIdentifier);
             talkViewModel.IDUserReceiver = Convert.ToInt32(user);
-            talkViewModel.Menssage = message;
+            talkViewModel.Message = message;
             talkViewModel.DateTime = DateTime.Now;            
 
             if (userIsLoggedIn)
