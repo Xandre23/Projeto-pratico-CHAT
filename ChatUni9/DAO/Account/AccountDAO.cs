@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using ChatUni9.FactoryObject.User;
+using System.Security.Claims;
 
 namespace ChatUni9.DAO.Account
 {
@@ -52,6 +53,9 @@ namespace ChatUni9.DAO.Account
 
             return user;
         }
+
+        
+
         /// <summary>
         /// LERVAR ESSE MÉTODO PARA O CONTACT DAO
         /// </summary>
@@ -80,6 +84,7 @@ namespace ChatUni9.DAO.Account
                     AND solicitacoes.id_usuario_emissor = @userID
                     OR solicitacoes.id_usuario_receptor = @userID");
             command.Parameters.AddWithValue("@userID", userID);
+
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();

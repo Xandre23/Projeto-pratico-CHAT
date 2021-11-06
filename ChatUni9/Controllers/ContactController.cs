@@ -39,6 +39,27 @@ namespace ChatUni9.Controllers
             {
                 throw new Exception(ex.Message);
             }
+
+        }
+        [HttpPost]
+        public async Task SendSolitation(int ID)
+        {
+            try
+            {
+
+                var accountDAO = new ContactDAO();
+                var senderID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                await accountDAO.SendSolitation(ID, senderID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+
         }        
+
     }
 }
