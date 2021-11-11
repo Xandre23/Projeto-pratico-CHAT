@@ -1,4 +1,5 @@
-﻿using ChatUni9.Models;
+﻿using ChatUni9.FactoryObject.User;
+using ChatUni9.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,37 @@ namespace ChatUni9.DAO
 
             await Insert(command);
 
+        }
+        internal async Task<IList<UserViewModel>> GetListContacts(int userID)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = (@"SELECT 
+                usuario.id,
+                usuario.nome,
+                usuario.sobrenome,
+                usuario.email,
+                usuario.senha,
+                usuario.sexo,
+                solicitacoes.id_usuario_emissor,
+                solicitacoes.id_usuario_receptor,
+                solicitacoes.status
+            FROM
+                usuario
+                    INNER JOIN
+                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+            WHERE
+                solicitacoes.status = 1
+                    AND usuario.id != @userID
+                    AND solicitacoes.id_usuario_emissor = @userID
+                    OR solicitacoes.id_usuario_receptor = @userID order by usuario.nome asc");
+            command.Parameters.AddWithValue("@userID", userID);
+
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var contacts = factoryUser.Factory(dataTable);
+
+            return contacts;
         }
     }
 }
