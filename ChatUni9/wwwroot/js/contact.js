@@ -52,3 +52,57 @@ $(document).on('click', '.btn-add', function () {
         }
     });
 });
+
+$("#btn-requests").click(function () {
+    var user = {
+       // ID: $(this).data("SendSolitation")
+    }
+    
+
+    $.ajax({
+        method: "GET",
+        url: "/Contact/Search",
+        datatype: "json",
+        data: user,
+        success: function (html) {
+            $("#header-modal").html(html);
+            $("#modal-solici").modal("toggle");
+        }
+    });
+});
+
+(document).on('click', '.btn-aceitar', function () {
+   
+    var user = {
+        ID: $(this).data("userid")
+    }
+
+    $.ajax({
+        method: "POST",
+        url: "/Contact/SendSolitation",
+        datatype: "json",
+        data: user,
+        success: function (html) {
+            alert('Solicitação enviada com sucesso');
+            $("#modal-solici").modal("toggle");
+
+        }
+    });
+});
+
+(document).on('click', '.btn-recusar', function () {
+    
+   
+
+    $.ajax({
+        method: "POST",
+        url: "/Contact/SendSolitation",
+        datatype: "json",
+        data: user,
+        success: function (html) {
+            alert('Solicitação enviada com sucesso');
+            $("#modal-solici").modal("toggle");
+
+        }
+    });
+});
