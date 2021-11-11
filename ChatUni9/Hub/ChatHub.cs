@@ -17,19 +17,19 @@ namespace ChatUni9.ChatHub
             Logger = NullLogger.Instance;
         }
 
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(int user, string message)
         {
-            var userIsLoggedIn = ConnectedUserViewModel.Ids.Contains(user);
+            var userIsLoggedIn = ConnectedUserViewModel.Ids.Contains(user.ToString());
             var talkViewModel = new TalkViewModel();
             talkViewModel.IDUserIssuer = Convert.ToInt32(Context.UserIdentifier);
-            talkViewModel.IDUserReceiver = Convert.ToInt32(user);
+            talkViewModel.IDUserReceiver = user;
             talkViewModel.Message = message;
             talkViewModel.DateTime = DateTime.Now;            
 
             if (userIsLoggedIn)
             {
                 talkViewModel.Visualized = true;
-                await Clients.User(user).SendAsync("ReceiveMessage", user, message);
+                await Clients.User(user.ToString()).SendAsync("ReceiveMessage", user, message);
             }
             else
             {
