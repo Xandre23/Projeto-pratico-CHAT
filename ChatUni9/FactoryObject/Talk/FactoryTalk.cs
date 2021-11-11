@@ -14,6 +14,7 @@ namespace ChatUni9.FactoryObject.Talk
             var listTalk = new UserViewModel();
             foreach (DataRow item in dataTable.Rows)
             {
+                listTalk.ID = Convert.ToInt32(item["user_id"]);
                 listTalk.Nome = Convert.ToString(item["nome"]);
                 listTalk.Sobrenome = Convert.ToString(item["nome"]);
                 listTalk.Talk.Add(new TalkViewModel()
