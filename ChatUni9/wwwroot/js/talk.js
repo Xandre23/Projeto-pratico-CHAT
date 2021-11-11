@@ -13,7 +13,8 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 $(document).on('click', '#send', function (event) {
-    var user = "25";
+
+    var user = $(this).data("iduserreceiver");
     var message = $("#txt-menssage").val();
 
     makeHTMLMessageSent(getHour(), getDate(), message);
