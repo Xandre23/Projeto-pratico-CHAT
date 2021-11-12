@@ -21,7 +21,7 @@
 <div class="chat-history" id="talk">
     <ul class="m-b-0 chat-list-messages" style="overflow-y: scroll; max-height:500px">
 
-        @foreach (var message in Model.Talk)
+        @foreach (var message in Model.Talk)    
         {
             @if (message.IDUserIssuer == ViewBag.LoggedInUserID)
             {

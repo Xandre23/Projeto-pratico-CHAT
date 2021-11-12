@@ -24,6 +24,7 @@ $(document).on('click', '#send', function (event) {
     });
     event.preventDefault();
     $("#txt-menssage").val("");
+    focusOnTheLastMessage();
 });
 
 
@@ -73,6 +74,7 @@ function makeHTMLMessageReceive(hour, formattedDate, message) {
     li.append(divMessageData, divMessage);
 
     $("ul.chat-list-messages").append(li);
+    focusOnTheLastMessage();
 }
 
 $(".contact").click(function () {
@@ -114,4 +116,12 @@ function factoryDivMessageData(classCss) {
     return jQuery("<div>", {
         "class": classCss
     });
+}
+
+function focusOnTheLastMessage() {
+    $('.chat-list-messages').animate
+        ({
+            scrollTop: $('.chat-list-messages').prop("scrollHeight")
+        }, 1000
+    );
 }

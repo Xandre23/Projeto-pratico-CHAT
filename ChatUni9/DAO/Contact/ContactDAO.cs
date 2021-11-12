@@ -40,9 +40,12 @@ namespace ChatUni9.DAO
                 solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             WHERE
                 solicitacoes.status = 1
-                    AND usuario.id != @userID
-                    AND solicitacoes.id_usuario_emissor = @userID
-                    OR solicitacoes.id_usuario_receptor = @userID order by usuario.nome asc");
+                AND usuario.id != @userID
+                AND (solicitacoes.id_usuario_emissor = @userID
+                OR solicitacoes.id_usuario_emissor != @userID)
+                AND (solicitacoes.id_usuario_receptor = @userID
+                OR solicitacoes.id_usuario_receptor != @userID)
+            ORDER BY usuario.nome ASC");
             command.Parameters.AddWithValue("@userID", userID);
 
 

@@ -1,6 +1,7 @@
 ﻿using ChatUni9.DAO;
 using ChatUni9.DAO.Account;
 using ChatUni9.DAO.Talk;
+using ChatUni9.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,8 +19,9 @@ namespace ChatUni9.Controllers
         public async Task<IActionResult> Index()
         {
             int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
-            var contactDAO = new ContactDAO();
+            var contactDAO = new ContactDAO();            
             var contacts = await contactDAO.GetListContacts(loggedInUserID);
+            ViewBag.OnlineUsers = ConnectedUserViewModel.Ids;
             return View(contacts);
         }
 

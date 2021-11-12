@@ -28,7 +28,14 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                                     <div class="about">
                                         <div class="name">@user.Nome</div>
-                                        <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                        @if (ViewBag.OnlineUsers.Contains(user.ID.ToString()))
+                                        {
+                                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="status"> <i class="fa fa-circle offline"></i> offline </div>
+                                        }
                                     </div>
                                 </li>
                             }
