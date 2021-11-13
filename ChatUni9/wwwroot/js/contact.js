@@ -53,17 +53,12 @@ $(document).on('click', '.btn-add', function () {
     });
 });
 
-$("#btn-requests").click(function () {
-    var user = {
-       // ID: $(this).data("SendSolitation")
-    }
-    
+$(document).on('click', '#btn-requests', function (event) {
 
     $.ajax({
         method: "GET",
-        url: "/Contact/Search",
+        url: "/Contact/ReceiveRequest",
         datatype: "json",
-        data: user,
         success: function (html) {
             $("#header-modal").html(html);
             $("#modal-solici").modal("toggle");
@@ -73,19 +68,14 @@ $("#btn-requests").click(function () {
 
 (document).on('click', '.btn-aceitar', function () {
    
-    var user = {
-        ID: $(this).data("userid")
-    }
 
     $.ajax({
         method: "POST",
-        url: "/Contact/SendSolitation",
+        url: "/Contact/Accept",
         datatype: "json",
-        data: user,
-        success: function (html) {
-            alert('Solicitação enviada com sucesso');
-            $("#modal-solici").modal("toggle");
-
+        success: function () { alert('Solicitação aceita!!'); },
+        error: function () {
+            alert('error');
         }
     });
 });
@@ -96,12 +86,12 @@ $("#btn-requests").click(function () {
 
     $.ajax({
         method: "POST",
-        url: "/Contact/SendSolitation",
+        url: "/Contact/Delete",
         datatype: "json",
         data: user,
-        success: function (html) {
-            alert('Solicitação enviada com sucesso');
-            $("#modal-solici").modal("toggle");
+        success: function () { alert('Solicitação Deletada!'); },
+         error: function () {
+            alert('error');
 
         }
     });

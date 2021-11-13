@@ -1,95 +1,95 @@
-﻿@model IList<ChatUni9.Models.UserViewModel>
-<div class="modal fade" id="modal-add-contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Pesquisar Usuários</h4>
-                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="inputSearch" id="campo_busca" placeholder="Search" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit" id="btn-search">Search</button>
+﻿@model IList<ChatUni9.Models.UserViewModel> 
+    <div class="modal fade" id="modal-add-contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Pesquisar Usuários</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="inputSearch" id="campo_busca" placeholder="Search" />
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" id="btn-search">Search</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="" class="people-list">
+                            <ul class="list-unstyled chat-list mt-2 mb-0">
+                                @foreach (var user in Model)
+                                {
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                        <div class="about">
+                                            <div class="name">@user.Nome</div>
+                                            <div class="sobrenome">@user.Sobrenome</div>
+
+                                            <a href="#" class="btn btn-outline-success btn-sm form-control btn-add" data-userid="@user.ID">
+                                                <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i>Adicionar</div>
+
+                                                <a href="#" class="btn btn-outline-success btn-sm form-control">
+                                                    <div><i class="fa fa-plus" aria-hidden="true"></i>Adicionar</div>
+
+                                                </a>
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div id="" class="people-list">
-                        <ul class="list-unstyled chat-list mt-2 mb-0">
-                            @foreach (var user in Model)
-                            {
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">@user.Nome</div>
-                                        <div class="sobrenome">@user.Sobrenome</div>
-
-                                        <a href="#" class="btn btn-outline-success btn-sm form-control btn-add" data-userid="@user.ID">
-                                            <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i>Adicionar</div>
-
-                                        <a href="#" class="btn btn-outline-success btn-sm form-control">
-                                            <div><i class="fa fa-plus" aria-hidden="true" ></i>Adicionar</div>
-
-                                        </a>
-                                    </div>
-                                </li>
-                            }
-                           
-                        </ul>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
-</div>
 
 
 
 
-<div class="modal fade" id="modal-solici" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Solicitação</h4>
-                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                
-                <div>
-                    <div id="" class="people-list">
-                        <ul class="list-unstyled chat-list mt-2 mb-0">
-                            @foreach (var SendSolitation in Model)
-                            {
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                    <div class="about">
-                                        <!-- <div class="ID">@SendSolitation</div>-->
+    <div class="modal fade" id="modal-solici" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Solicitação</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <div id="" class="people-list">
+                            <ul class="list-unstyled chat-list mt-2 mb-0">
+                                @foreach (var ReceiveRequest in Model)
+                                {
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                        <div class="about">
+                                            <div class="recb">@ReceiveRequest</div>
 
 
-                                        <a href="#" class="btn btn-outline-success btn-sm form-control btn-aceitar" data-userid="">
-                                            <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Adicionar</div>
-                                        </a>
+                                            <a href="#" class="btn btn-outline-success btn-sm form-control btn-aceitar">
+                                                <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Adicionar</div>
+                                            </a>
 
-                                        <a href="#" class="btn btn-outline-success btn-sm form-control btn-recusar" data-userid="">
-                                            <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Recusar</div>
+                                            <a href="#" class="btn btn-outline-success btn-sm form-control btn-recusar">
+                                                <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Recusar</div>
 
 
 
-                                        </a>
-                                    </div>
-                                </li>
-                            }
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

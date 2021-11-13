@@ -57,8 +57,49 @@ namespace ChatUni9.Controllers
             }
 
         }
+        [HttpGet]
+        public async Task<IActionResult> ReceiveRequest(int ID)
+        {
+            try
+            {
 
+                var accountDAO = new ContactDAO();
+                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                var user = await accountDAO.ReceiveRequest(ID);
 
-        }        
+                return PartialView("/Views/Contact/_AddContact.cshtml", user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
+        }
+        [HttpPost]
+        public async Task Accept(int ID)
+        {
+            try
+            {
+                var accountDAO = new ContactDAO();
+                await accountDAO.Accept(ID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        [HttpPost]
+        public async Task Delete(int senderID)
+        {
+            try
+            {
+                var accountDAO = new ContactDAO();
+                await accountDAO.Delete(senderID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }        
     }
