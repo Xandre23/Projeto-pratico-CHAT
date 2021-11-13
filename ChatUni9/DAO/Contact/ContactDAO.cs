@@ -15,8 +15,8 @@ namespace ChatUni9.DAO
             var command = new MySqlCommand();
             command.CommandText = "insert into solicitacoes (id_usuario_emissor, id_usuario_receptor) values (@id_usuario_emissor, @id_usuario_receptor)";
 
-            command.Parameters.AddWithValue("@id_usuario_emissor", senderID);
-            command.Parameters.AddWithValue("@id_usuario_receptor", ID);
+            command.Parameters.AddWithValue("@id_usuario_emissor", ID);
+            command.Parameters.AddWithValue("@id_usuario_receptor", senderID);
 
             await Insert(command);
             
@@ -26,9 +26,20 @@ namespace ChatUni9.DAO
         public async Task<IList<UserViewModel>> ReceiveRequest(int ID)
         {
             var command = new MySqlCommand();
-            command.CommandText = ("select * from solicitacoes where  id_usuario_receptor  like @id_usuario_receptor ");
-            command.Parameters.AddWithValue("@id_usuario_receptor", "%" + ID + "%");
-            
+            command.CommandText = (@"SELECT 
+                usuario.id,
+                usuario.email,
+	            usuario.senha,
+                usuario.nome,
+                usuario.sobrenome,
+                usuario.sexo
+            FROM
+                solicitacoes
+                    INNER JOIN
+                usuario ON solicitacoes.id_usuario_emissor = usuario.id
+            WHERE
+                id_usuario_receptor = @id_usuario_receptor and solicitacoes.status = 0;");
+            command.Parameters.AddWithValue("@id_usuario_receptor", ID);           
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
@@ -41,20 +52,18 @@ namespace ChatUni9.DAO
         {
             var command = new MySqlCommand();
             //atualizar o id para 1 onde a descricao for aceito
-            command.CommandText = "UPDATE status_solicitacao SET id = @id WHERE id=@id";
-            command.Parameters.AddWithValue("@id",ID).Value = 1;
+            command.CommandText = "UPDATE solicitacoes SET status = 1 WHERE id = @id";
+            command.Parameters.AddWithValue("@id",ID);
 
-            command.ExecuteNonQuery();
              await Update(command);
         }
 
         public async Task Delete(int senderID)
         {
             var command = new MySqlCommand();
-            command.CommandText = "DELETE FROM solicitacoes WHERE id_usuario_emissor=@id_usuario_emissor";
-            command.Parameters.AddWithValue("@id_usuario_emissor", senderID);
-
-            command.ExecuteNonQuery();
+            command.CommandText = "DELETE FROM solicitacoes WHERE id = @id";
+            command.Parameters.AddWithValue("@id", senderID);
+            
             await Delete(command);
         }
     }

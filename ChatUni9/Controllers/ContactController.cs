@@ -24,10 +24,11 @@ namespace ChatUni9.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Search(string name)
-        {          
+        {
             try
             {
-                if(string.IsNullOrEmpty(name)){
+                if (string.IsNullOrEmpty(name))
+                {
                     name = "a";
                 }
                 var accountDAO = new AccountDAO();
@@ -46,7 +47,6 @@ namespace ChatUni9.Controllers
         {
             try
             {
-
                 var accountDAO = new ContactDAO();
                 var senderID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 await accountDAO.SendSolitation(ID, senderID);
@@ -67,7 +67,7 @@ namespace ChatUni9.Controllers
                 ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 var user = await accountDAO.ReceiveRequest(ID);
 
-                return PartialView("/Views/Contact/_AddContact.cshtml", user);
+                return PartialView("/Views/Contact/_ListSolicitations.cshtml", user);
             }
             catch (Exception ex)
             {
@@ -101,5 +101,5 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-    }        
     }
+}
