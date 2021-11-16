@@ -81,6 +81,7 @@ namespace ChatUni9.Controllers
             try
             {
                 var accountDAO = new ContactDAO();
+                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 await accountDAO.Accept(ID);
             }
             catch (Exception ex)
@@ -89,12 +90,13 @@ namespace ChatUni9.Controllers
             }
         }
         [HttpPost]
-        public async Task Delete(int senderID)
+        public async Task Delete(int ID)
         {
             try
             {
                 var accountDAO = new ContactDAO();
-                await accountDAO.Delete(senderID);
+                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                await accountDAO.Delete(ID);
             }
             catch (Exception ex)
             {

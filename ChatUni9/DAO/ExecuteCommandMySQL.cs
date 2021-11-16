@@ -53,12 +53,42 @@ namespace ChatUni9.DAO
 
         protected async Task Update(MySqlCommand command)
         {
-
+            MySqlConnection conn = new MySqlConnection(GetConnectionString());
+            try
+            {
+                await conn.OpenAsync();
+                command.Connection = conn;
+                await command.ExecuteNonQueryAsync();
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
         }
 
-        protected async Task Delete(MySqlCommand command)
+    protected async Task Delete(MySqlCommand command)
+    {
+        MySqlConnection conn = new MySqlConnection(GetConnectionString());
+        try
         {
-
+            await conn.OpenAsync();
+            command.Connection = conn;
+            await command.ExecuteNonQueryAsync();
+        }
+        catch (MySqlException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        finally
+        {
+            await conn.CloseAsync();
         }
     }
-}
+    }
+    }
+
+

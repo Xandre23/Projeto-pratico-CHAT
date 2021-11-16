@@ -66,13 +66,18 @@ $(document).on('click', '#btn-requests', function (event) {
     });
 });
 
-(document).on('click', '.btn-aceitar', function () {
-   
+$(document).on('click', '.btn-aceitar', function () {
+    $(this).text("Solicitação Aceita!");
+    var user = {
+        ID: $(this).data("userid")
+    }
+
 
     $.ajax({
         method: "POST",
         url: "/Contact/Accept",
         datatype: "json",
+        data: user,
         success: function () { alert('Solicitação aceita!!'); },
         error: function () {
             alert('error');
@@ -80,8 +85,11 @@ $(document).on('click', '#btn-requests', function (event) {
     });
 });
 
-(document).on('click', '.btn-recusar', function () {
-    
+$(document).on('click', '.btn-recusar', function () {
+    $(this).text("Solicitação excluida!");
+    var user = {
+        ID: $(this).data("userid")
+    }
    
 
     $.ajax({

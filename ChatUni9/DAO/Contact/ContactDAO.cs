@@ -51,18 +51,18 @@ namespace ChatUni9.DAO
         public async Task Accept(int ID)
         {
             var command = new MySqlCommand();
-            //atualizar o id para 1 onde a descricao for aceito
+           
             command.CommandText = "UPDATE solicitacoes SET status = 1 WHERE id = @id";
             command.Parameters.AddWithValue("@id",ID);
 
              await Update(command);
         }
 
-        public async Task Delete(int senderID)
+        public async Task Delete(int ID)
         {
             var command = new MySqlCommand();
             command.CommandText = "DELETE FROM solicitacoes WHERE id = @id";
-            command.Parameters.AddWithValue("@id", senderID);
+            command.Parameters.AddWithValue("@id", ID);
             
             await Delete(command);
         }
