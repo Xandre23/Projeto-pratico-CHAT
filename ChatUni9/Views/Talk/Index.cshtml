@@ -24,13 +24,31 @@
                         {
                             foreach (var user in Model)
                             {
-                                <li class="clearfix contact" data-userid="@user.ID">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                <li class="clearfix contact container" data-userid="@user.ID">
+                                    <div style="width:50px; float:left">
+                                        <avatar-initials initials="@user.Nome.Substring(0, 1)@user.Sobrenome.Substring(0, 1)"
+                                                         auto-color="true"
+                                                         text-scale="1.2"
+                                                         text-weight="300"
+                                                         rounded
+                                                         text-color="white"
+                                                         size="45"
+                                                         border="1">
+                                        </avatar-initials>
+                                    </div>                                    
                                     <div class="about">
                                         <div class="name">@user.Nome</div>
-                                        <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                        @if (ViewBag.OnlineUsers.Contains(user.ID.ToString()))
+                                        {
+                                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="status"> <i class="fa fa-circle offline"></i> offline </div>
+                                        }
                                     </div>
                                 </li>
+
                             }
                         }
                         else
@@ -41,6 +59,7 @@
                                     <div class="status">Adicione um conatato para iniciar uma conversa</div>
                                 </div>
                             </li>
+
                         }
 
                         @*<li class="clearfix active contact" data-userid="26">
@@ -72,4 +91,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.min.js"></script>
     <script src="~/js/talk.js" asp-append-version="true"></script>
     <script src="~/js/contact.js" asp-append-version="true"></script>
+    <script src="~/js/avatar-initials.js" asp-append-version="true"></script>
 }

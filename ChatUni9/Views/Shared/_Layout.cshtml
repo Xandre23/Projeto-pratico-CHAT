@@ -18,12 +18,21 @@
                 <span class="py-3 px-md-2">
                     <a class="text-white text-decoration-none" asp-area="" asp-controller="Talk" asp-action="Index">Conversas</a>
                 </span>
-                <span class="py-3 px-md-2">
-                    <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Index">Crie a sua conta</a>
-                </span>
-                <span class="py-3 px-md-2">
-                    <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Login">Entre</a>
-                </span>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <span class="py-3 px-md-2">
+                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Index">Crie a sua conta</a>
+                    </span>
+                    <span class="py-3 px-md-2">
+                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Login">Entre</a>
+                    </span>
+                }
+                else
+                {
+                    <span class="py-3 px-md-2">
+                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Logout">Sair</a>
+                    </span>
+                }
             </div>
         </div>
         <nav class="navbar navbar-dark bg-dark">
