@@ -41,10 +41,10 @@ namespace ChatUni9.DAO.Account
 
 
 
-        public async  Task<IList<UserViewModel>> Search(string nome)
+        public async Task<IList<UserViewModel>> Search(string nome)
         {
             var command = new MySqlCommand();
-            command.CommandText = ("select * from usuario where nome like @nome");
+            command.CommandText = "select * from usuario where nome like @nome";
             command.Parameters.AddWithValue("@nome","%"+nome+"%");
 
             var dataTable = await Select(command);
@@ -54,14 +54,14 @@ namespace ChatUni9.DAO.Account
             return user;
         }
 
-        
+        public async Task UpdateLastSeen(int userID)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = "update usuario set visto_por_ultimo = now() where id = @userID";
+            command.Parameters.AddWithValue("@userID", userID);
 
-        /// <summary>
-        /// LERVAR ESSE MÉTODO PARA O CONTACT DAO
-        /// </summary>
-        /// <param name="userID"></param>
-        /// <returns></returns>
-      
+            await Update(command);
+        }
     }
 }
 
