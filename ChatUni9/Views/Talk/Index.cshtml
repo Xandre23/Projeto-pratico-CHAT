@@ -35,16 +35,20 @@
                                                          size="45"
                                                          border="1">
                                         </avatar-initials>
-                                    </div>                                    
+                                    </div>
                                     <div class="about">
                                         <div class="name">@user.Nome</div>
                                         @if (ViewBag.OnlineUsers.Contains(user.ID.ToString()))
                                         {
-                                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                            <div class="status">
+                                                <i class="fa fa-circle online" id="status-usuario-@user.ID"></i> online 
+                                            </div>
                                         }
                                         else
                                         {
-                                            <div class="status"> <i class="fa fa-circle offline"></i> offline </div>
+                                            <div class="status"> 
+                                                <i class="fa fa-circle offline" id="status-usuario-@user.ID"></i> offline 
+                                            </div>
                                         }
                                     </div>
                                 </li>

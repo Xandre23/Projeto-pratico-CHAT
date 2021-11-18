@@ -7,6 +7,18 @@ connection.on("ReceiveMessage", function (user, message) {
     makeHTMLMessageReceive(getHour(), getDate(), message);
 });
 
+connection.on("NewUserOnline", function (user) {
+    const statusUsuario = `#status-usuario-${user}`;
+    $(statusUsuario).removeClass("offline");
+    $(statusUsuario).addClass("online");  
+});
+
+connection.on("AUserHasLoggedOut", function (user) {
+    const statusUsuario = `#status-usuario-${user}`;
+    $(statusUsuario).removeClass("online");
+    $(statusUsuario).addClass("offline");
+});
+
 connection.start().then(function () {
     $("#send").disabled = false;
 }).catch(function (err) {
