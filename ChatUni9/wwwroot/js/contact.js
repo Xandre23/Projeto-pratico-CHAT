@@ -53,17 +53,12 @@ $(document).on('click', '.btn-add', function () {
     });
 });
 
-$("#btn-requests").click(function () {
-    var user = {
-       // ID: $(this).data("SendSolitation")
-    }
+$(document).on('click', '#btn-requests', function (event) {
     
-
     $.ajax({
         method: "GET",
-        url: "/Contact/Search",
+        url: "/Contact/ReceiveRequest",
         datatype: "json",
-        data: user,
         success: function (html) {
             $("#header-modal").html(html);
             $("#modal-solici").modal("toggle");
@@ -71,37 +66,40 @@ $("#btn-requests").click(function () {
     });
 });
 
-(document).on('click', '.btn-aceitar', function () {
-   
-    var user = {
-        ID: $(this).data("userid")
+$(document).on('click', '.btn-aceitar', function () {
+    $(this).text("Solicitação Aceita!");
+    var solicitation = {
+        ID: $(this).data("solicitation")
     }
+
 
     $.ajax({
         method: "POST",
-        url: "/Contact/SendSolitation",
+        url: "/Contact/Accept",
         datatype: "json",
-        data: user,
-        success: function (html) {
-            alert('Solicitação enviada com sucesso');
-            $("#modal-solici").modal("toggle");
-
+        data: solicitation,
+        success: function () { alert('Solicitação aceita!!'); },
+        error: function () {
+            alert('error');
         }
     });
 });
 
-(document).on('click', '.btn-recusar', function () {
-    
+$(document).on('click', '.btn-recusar', function () {
+    $(this).text("Solicitação excluida!");
+    var solicitation = {
+        ID: $(this).data("solicitation")
+    }
    
 
     $.ajax({
-        method: "POST",
-        url: "/Contact/SendSolitation",
+        method: "DELETE",
+        url: "/Contact/Refuse",
         datatype: "json",
-        data: user,
-        success: function (html) {
-            alert('Solicitação enviada com sucesso');
-            $("#modal-solici").modal("toggle");
+        data: solicitation,
+        success: function () { alert('Solicitação Deletada!'); },
+         error: function () {
+            alert('error');
 
         }
     });
