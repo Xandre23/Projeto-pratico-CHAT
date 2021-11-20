@@ -54,7 +54,7 @@ $(document).on('click', '.btn-add', function () {
 });
 
 $(document).on('click', '#btn-requests', function (event) {
-
+    
     $.ajax({
         method: "GET",
         url: "/Contact/ReceiveRequest",
@@ -68,8 +68,8 @@ $(document).on('click', '#btn-requests', function (event) {
 
 $(document).on('click', '.btn-aceitar', function () {
     $(this).text("Solicitação Aceita!");
-    var user = {
-        ID: $(this).data("userid")
+    var solicitation = {
+        ID: $(this).data("solicitation")
     }
 
 
@@ -77,7 +77,7 @@ $(document).on('click', '.btn-aceitar', function () {
         method: "POST",
         url: "/Contact/Accept",
         datatype: "json",
-        data: user,
+        data: solicitation,
         success: function () { alert('Solicitação aceita!!'); },
         error: function () {
             alert('error');
@@ -87,8 +87,8 @@ $(document).on('click', '.btn-aceitar', function () {
 
 $(document).on('click', '.btn-recusar', function () {
     $(this).text("Solicitação excluida!");
-    var user = {
-        ID: $(this).data("userid")
+    var solicitation = {
+        ID: $(this).data("solicitation")
     }
    
 
@@ -96,7 +96,7 @@ $(document).on('click', '.btn-recusar', function () {
         method: "POST",
         url: "/Contact/Delete",
         datatype: "json",
-        data: user,
+        data: solicitation,
         success: function () { alert('Solicitação Deletada!'); },
          error: function () {
             alert('error');

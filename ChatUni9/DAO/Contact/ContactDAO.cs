@@ -1,4 +1,5 @@
-﻿using ChatUni9.FactoryObject.User;
+﻿using ChatUni9.FactoryObject.Solicitation;
+using ChatUni9.FactoryObject.User;
 using ChatUni9.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -23,7 +24,7 @@ namespace ChatUni9.DAO
 
         }
 
-        public async Task<IList<UserViewModel>> ReceiveRequest(int ID)
+        public async Task<IList<SolicitationViewModel>> ReceiveRequest(int ID)
         {
             var command = new MySqlCommand();
             command.CommandText = (@"SELECT 
@@ -32,7 +33,8 @@ namespace ChatUni9.DAO
 	            usuario.senha,
                 usuario.nome,
                 usuario.sobrenome,
-                usuario.sexo
+                usuario.sexo, 
+                solicitacoes.id as solicitacao_id
             FROM
                 solicitacoes
                     INNER JOIN
@@ -42,7 +44,7 @@ namespace ChatUni9.DAO
             command.Parameters.AddWithValue("@id_usuario_receptor", ID);           
 
             var dataTable = await Select(command);
-            var factoryUser = new FactoryUser();
+            var factoryUser = new FactorySolicitation();
             var user = factoryUser.Factory(dataTable);
 
             return user;
@@ -54,8 +56,10 @@ namespace ChatUni9.DAO
            
             command.CommandText = "UPDATE solicitacoes SET status = 1 WHERE id = @id";
             command.Parameters.AddWithValue("@id",ID);
+           
 
-             await Update(command);
+
+            await Update(command);
         }
 
         public async Task Delete(int ID)

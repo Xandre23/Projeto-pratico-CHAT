@@ -58,15 +58,13 @@ namespace ChatUni9.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> ReceiveRequest(int ID)
+        public async Task<IActionResult> ReceiveRequest()
         {
             try
             {
-
                 var accountDAO = new ContactDAO();
-                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                int ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 var user = await accountDAO.ReceiveRequest(ID);
-
                 return PartialView("/Views/Contact/_ListSolicitations.cshtml", user);
             }
             catch (Exception ex)
@@ -81,7 +79,6 @@ namespace ChatUni9.Controllers
             try
             {
                 var accountDAO = new ContactDAO();
-                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 await accountDAO.Accept(ID);
             }
             catch (Exception ex)
@@ -89,14 +86,17 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [HttpPost]
-        public async Task Delete(int ID)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int ID)
         {
             try
             {
                 var accountDAO = new ContactDAO();
                 ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
-                await accountDAO.Delete(ID);
+               // await accountDAO.Accept(ID);
+
+
+                return PartialView("/Views/Contact/_ListSolicitations.cshtml", ID);
             }
             catch (Exception ex)
             {
