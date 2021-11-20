@@ -52,3 +52,55 @@ $(document).on('click', '.btn-add', function () {
         }
     });
 });
+
+$(document).on('click', '#btn-requests', function (event) {
+    
+    $.ajax({
+        method: "GET",
+        url: "/Contact/ReceiveRequest",
+        datatype: "json",
+        success: function (html) {
+            $("#header-modal").html(html);
+            $("#modal-solici").modal("toggle");
+        }
+    });
+});
+
+$(document).on('click', '.btn-aceitar', function () {
+    $(this).text("Solicitação Aceita!");
+    var solicitation = {
+        ID: $(this).data("solicitation")
+    }
+
+
+    $.ajax({
+        method: "POST",
+        url: "/Contact/Accept",
+        datatype: "json",
+        data: solicitation,
+        success: function () { alert('Solicitação aceita!!'); },
+        error: function () {
+            alert('error');
+        }
+    });
+});
+
+$(document).on('click', '.btn-recusar', function () {
+    $(this).text("Solicitação excluida!");
+    var solicitation = {
+        ID: $(this).data("solicitation")
+    }
+   
+
+    $.ajax({
+        method: "DELETE",
+        url: "/Contact/Refuse",
+        datatype: "json",
+        data: solicitation,
+        success: function () { alert('Solicitação Deletada!'); },
+         error: function () {
+            alert('error');
+
+        }
+    });
+});
