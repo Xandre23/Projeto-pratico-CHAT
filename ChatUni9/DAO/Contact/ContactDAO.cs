@@ -1,9 +1,5 @@
-
-﻿using ChatUni9.FactoryObject.Solicitation;
+using ChatUni9.FactoryObject.Solicitation;
 using ChatUni9.FactoryObject.User;
-
-﻿using ChatUni9.FactoryObject.User;
-
 using ChatUni9.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -24,20 +20,15 @@ namespace ChatUni9.DAO
             command.Parameters.AddWithValue("@id_usuario_receptor", senderID);
 
             await Insert(command);
-            
+
 
         }
 
-
-        public async Task<IList<SolicitationViewModel>> ReceiveRequest(int ID);
-
-        internal async Task<IList<UserViewModel>> GetListContacts(int userID)
-
+        public async Task<IList<SolicitationViewModel>> ReceiveRequest(int ID)
         {
             var command = new MySqlCommand();
             command.CommandText = (@"SELECT 
                 usuario.id,
-
                 usuario.email,
 	            usuario.senha,
                 usuario.nome,
@@ -50,7 +41,7 @@ namespace ChatUni9.DAO
                 usuario ON solicitacoes.id_usuario_emissor = usuario.id
             WHERE
                 id_usuario_receptor = @id_usuario_receptor and solicitacoes.status = 0;");
-            command.Parameters.AddWithValue("@id_usuario_receptor", ID);           
+            command.Parameters.AddWithValue("@id_usuario_receptor", ID);
 
             var dataTable = await Select(command);
             var factoryUser = new FactorySolicitation();
@@ -62,9 +53,9 @@ namespace ChatUni9.DAO
         public async Task Accept(int ID)
         {
             var command = new MySqlCommand();
-           
+
             command.CommandText = "UPDATE solicitacoes SET status = 1 WHERE id = @id";
-            command.Parameters.AddWithValue("@id",ID);
+            command.Parameters.AddWithValue("@id", ID);
 
             await Update(command);
         }
@@ -74,9 +65,14 @@ namespace ChatUni9.DAO
             var command = new MySqlCommand();
             command.CommandText = "DELETE FROM solicitacoes WHERE id = @id";
             command.Parameters.AddWithValue("@id", ID);
-            
-            await Delete(command);
 
+            await Delete(command);
+        }
+        internal async Task<IList<UserViewModel>> GetListContacts(int userID)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = (@"SELECT 
+                usuario.id,
                 usuario.nome,
                 usuario.sobrenome,
                 usuario.email,
@@ -105,7 +101,7 @@ namespace ChatUni9.DAO
             var contacts = factoryUser.Factory(dataTable);
 
             return contacts;
-
         }
     }
+
 }
