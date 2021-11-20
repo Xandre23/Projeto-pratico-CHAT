@@ -79,6 +79,11 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
     }
 }
 
