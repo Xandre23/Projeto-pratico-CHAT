@@ -29,7 +29,7 @@ namespace ChatUni9.DAO
         }
 
 
-        public async Task<IList<SolicitationViewModel>> ReceiveRequest(int ID)
+        public async Task<IList<SolicitationViewModel>> ReceiveRequest(int ID);
 
         internal async Task<IList<UserViewModel>> GetListContacts(int userID)
 
