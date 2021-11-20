@@ -86,17 +86,13 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [HttpGet]
-        public async Task<IActionResult> Delete(int ID)
+        [HttpDelete]
+        public async Task Refuse(int ID)
         {
             try
             {
                 var accountDAO = new ContactDAO();
-                ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
-               // await accountDAO.Accept(ID);
-
-
-                return PartialView("/Views/Contact/_ListSolicitations.cshtml", ID);
+               await accountDAO.Delete(ID);
             }
             catch (Exception ex)
             {

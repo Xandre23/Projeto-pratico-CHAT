@@ -56,8 +56,6 @@ namespace ChatUni9.DAO
            
             command.CommandText = "UPDATE solicitacoes SET status = 1 WHERE id = @id";
             command.Parameters.AddWithValue("@id",ID);
-           
-
 
             await Update(command);
         }

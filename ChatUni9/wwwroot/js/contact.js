@@ -93,8 +93,8 @@ $(document).on('click', '.btn-recusar', function () {
    
 
     $.ajax({
-        method: "POST",
-        url: "/Contact/Delete",
+        method: "DELETE",
+        url: "/Contact/Refuse",
         datatype: "json",
         data: solicitation,
         success: function () { alert('Solicitação Deletada!'); },
