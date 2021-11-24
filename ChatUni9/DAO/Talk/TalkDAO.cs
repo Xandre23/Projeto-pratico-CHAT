@@ -44,7 +44,7 @@ namespace ChatUni9.DAO.Talk
             //        or(conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
             //        AND (solicitacoes.status = 1)");
 
-            command.CommandText = @"SELECT 
+            command.CommandText = (@"SELECT
                 conversas.*,
                 usuario.id AS 'user_id',
                 usuario.nome,
@@ -53,14 +53,15 @@ namespace ChatUni9.DAO.Talk
             FROM
                 conversas
                     RIGHT JOIN
-                usuario ON usuario.id IN (conversas.id_usuario_emissor , conversas.id_usuario_receptor)
+                usuario ON usuario.id IN(conversas.id_usuario_emissor , conversas.id_usuario_receptor)
                     INNER JOIN
-                solicitacoes ON usuario.id IN (solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             WHERE
-                (conversas.id_usuario_emissor = @idcontact or conversas.id_usuario_emissor = @loggedinuserid or usuario.id = 1 and solicitacoes.status = 1) OR 
-                (conversas.id_usuario_emissor = @loggedinuserid or conversas.id_usuario_emissor = @idcontact or usuario.id = 1 and solicitacoes.status = 1) OR 
-                (conversas.id_usuario_receptor = @idcontact or conversas.id_usuario_receptor = @loggedinuserid or usuario.id = 1 and solicitacoes.status = 1) OR 
-                (conversas.id_usuario_receptor = @loggedinuserid or conversas.id_usuario_receptor = @idcontact or usuario.id = 1 and solicitacoes.status = 1) group by conversas.id";
+                 (conversas.id_usuario_emissor = @loggedinuserid) OR
+                (conversas.id_usuario_emissor = @idcontact) OR
+                (conversas.id_usuario_receptor = @idcontact) OR
+                (conversas.id_usuario_receptor = @loggedinuserid)
+                or(solicitacoes.status = 1 AND usuario.id = @idcontact)");
 
 
             command.Parameters.AddWithValue("@idcontact", idContact);
