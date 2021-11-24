@@ -29,7 +29,8 @@ namespace ChatUni9.DAO.Talk
                 conversas.*,
                 usuario.id as 'user_id',
                 usuario.nome,
-                usuario.sobrenome
+                usuario.sobrenome,
+                usuario.visto_por_ultimo
             from
                 conversas
                     inner join

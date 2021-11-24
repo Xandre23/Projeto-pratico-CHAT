@@ -31,6 +31,7 @@ namespace ChatUni9.Controllers
             var talkDAO = new TalkDAO();
             int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
             ViewBag.LoggedInUserID = loggedInUserID;
+            ViewBag.OnlineUsers = ConnectedUserViewModel.Ids;
             var listTalk = await talkDAO.GetMessages(userID, loggedInUserID);
             return PartialView("/Views/Talk/_Talk.cshtml", listTalk);
         }

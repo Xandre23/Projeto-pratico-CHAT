@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -50,7 +51,6 @@ namespace ChatUni9.Controllers
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
                 if (string.IsNullOrEmpty(user.Email))
-
                 {
                     var result = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
@@ -81,6 +81,10 @@ namespace ChatUni9.Controllers
         }
         public async Task<IActionResult> Logout()
         {
+            var accountDAO = new AccountDAO();
+            int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+            await accountDAO.UpdateLastSeen(loggedInUserID);
+
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }

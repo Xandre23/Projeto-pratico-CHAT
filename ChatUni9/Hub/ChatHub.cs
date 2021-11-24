@@ -42,6 +42,7 @@ namespace ChatUni9.ChatHub
         {
             await base.OnConnectedAsync();
             ConnectedUserViewModel.Ids.Add(Context.UserIdentifier);
+            await Clients.All.SendAsync("NewUserOnline", Context.UserIdentifier);
             Logger.Debug("A client connected to MyChatHub: " + Context.UserIdentifier);
         }
 
@@ -49,6 +50,7 @@ namespace ChatUni9.ChatHub
         {
             ConnectedUserViewModel.Ids.Remove(Context.UserIdentifier);
             await base.OnDisconnectedAsync(exception);
+            await Clients.All.SendAsync("AUserHasLoggedOut", Context.UserIdentifier);
             Logger.Debug("A client disconnected from MyChatHub: " + Context.UserIdentifier);
         }
     }

@@ -16,7 +16,7 @@ namespace ChatUni9.FactoryObject.Talk
             {
                 listTalk.ID = Convert.ToInt32(item["user_id"]);
                 listTalk.Nome = Convert.ToString(item["nome"]);
-                listTalk.Sobrenome = Convert.ToString(item["nome"]);
+                listTalk.Sobrenome = Convert.ToString(item["sobrenome"]);
                 listTalk.Talk.Add(new TalkViewModel()
                 {
                     ID = Convert.ToInt32(item["id"]),

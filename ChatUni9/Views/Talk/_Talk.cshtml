@@ -2,12 +2,28 @@
 <div class="chat-header clearfix">
     <div class="row">
         <div class="col-lg-6">
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-            </a>
+            <div style="width:50px; float:left">
+                <avatar-initials initials="@Model.Nome.Substring(0, 1)@Model.Sobrenome.Substring(0, 1)"
+                                 auto-color="true"
+                                 text-scale="1.2"
+                                 text-weight="300"
+                                 rounded
+                                 text-color="white"
+                                 size="45"
+                                 border="1">
+                </avatar-initials>
+            </div>
             <div class="chat-about">
                 <h6 class="m-b-0">@Model.Nome @Model.Sobrenome</h6>
-                <small>Last seen: 2 hours ago</small>
+
+                @if (ViewBag.OnlineUsers.Contains(Model.ID.ToString()))
+                {
+                    <small>online</small>
+                }
+                else
+                {
+                    <small>visto pela última vez em 2 hours ago</small>
+                }
             </div>
         </div>
         <div class="col-lg-6 hidden-sm text-right">
@@ -21,7 +37,7 @@
 <div class="chat-history" id="talk">
     <ul class="m-b-0 chat-list-messages" style="overflow-y: scroll; max-height:500px">
 
-        @foreach (var message in Model.Talk)    
+        @foreach (var message in Model.Talk)
         {
             @if (message.IDUserIssuer == ViewBag.LoggedInUserID)
             {
