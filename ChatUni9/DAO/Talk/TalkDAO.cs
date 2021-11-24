@@ -60,7 +60,7 @@ namespace ChatUni9.DAO.Talk
                 (conversas.id_usuario_emissor = @idcontact or conversas.id_usuario_emissor = @loggedinuserid or usuario.id = 1 and solicitacoes.status = 1) OR 
                 (conversas.id_usuario_emissor = @loggedinuserid or conversas.id_usuario_emissor = @idcontact or usuario.id = 1 and solicitacoes.status = 1) OR 
                 (conversas.id_usuario_receptor = @idcontact or conversas.id_usuario_receptor = @loggedinuserid or usuario.id = 1 and solicitacoes.status = 1) OR 
-                (conversas.id_usuario_receptor = @loggedinuserid or conversas.id_usuario_receptor = @idcontact or usuario.id = 1 and solicitacoes.status = 1)";
+                (conversas.id_usuario_receptor = @loggedinuserid or conversas.id_usuario_receptor = @idcontact or usuario.id = 1 and solicitacoes.status = 1) group by conversas.id";
 
 
             command.Parameters.AddWithValue("@idcontact", idContact);
