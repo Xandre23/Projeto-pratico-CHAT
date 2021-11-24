@@ -17,15 +17,19 @@ namespace ChatUni9.FactoryObject.Talk
                 listTalk.ID = Convert.ToInt32(item["user_id"]);
                 listTalk.Nome = Convert.ToString(item["nome"]);
                 listTalk.Sobrenome = Convert.ToString(item["sobrenome"]);
-                listTalk.Talk.Add(new TalkViewModel()
+
+                if (!string.IsNullOrEmpty(Convert.ToString( item["id"])))
                 {
-                    ID = Convert.ToInt32(item["id"]),
-                    IDUserIssuer = Convert.ToInt32(item["id_usuario_emissor"]),
-                    IDUserReceiver = Convert.ToInt32(item["id_usuario_emissor"]),
-                    Message = Convert.ToString(item["mensagem"]),
-                    DateTime = Convert.ToDateTime(item["data_hora"]),
-                    Visualized = Convert.ToBoolean(item["visualizado"])
-                });
+                    listTalk.Talk.Add(new TalkViewModel()
+                    {
+                        ID = Convert.ToInt32(item["id"]),
+                        IDUserIssuer = Convert.ToInt32(item["id_usuario_emissor"]),
+                        IDUserReceiver = Convert.ToInt32(item["id_usuario_emissor"]),
+                        Message = Convert.ToString(item["mensagem"]),
+                        DateTime = Convert.ToDateTime(item["data_hora"]),
+                        Visualized = Convert.ToBoolean(item["visualizado"])
+                    });
+                }               
             }
             return listTalk;
         }
