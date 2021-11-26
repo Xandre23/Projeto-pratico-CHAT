@@ -24,7 +24,7 @@ namespace ChatUni9.FactoryObject.Talk
                     {
                         ID = Convert.ToInt32(item["id"]),
                         IDUserIssuer = Convert.ToInt32(item["id_usuario_emissor"]),
-                        IDUserReceiver = Convert.ToInt32(item["id_usuario_emissor"]),
+                        IDUserReceiver = Convert.ToInt32(item["id_usuario_receptor"]),
                         Message = Convert.ToString(item["mensagem"]),
                         DateTime = Convert.ToDateTime(item["data_hora"]),
                         Visualized = Convert.ToBoolean(item["visualizado"])
