@@ -104,3 +104,21 @@ $(document).on('click', '.btn-recusar', function () {
         }
     });
 });
+
+$(document).on('click', '#proc_teste', function (event) {
+    var filter = {
+        name: $("#campo_nome").val()
+
+    }
+
+    $.ajax({
+        method: "GET",
+        url: "/Contact/Proc",
+        datatype: "json",
+        data: filter,
+        success: function () { alert('success'); },
+        error: function () {
+            alert('error');
+        }
+    });
+});

@@ -99,5 +99,26 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Proc(string name)
+        {
+            try
+            {
+               
+              
+                var contactDAO = new ContactDAO();
+                var contacts = await contactDAO.GetListContactss(name);
+
+                return View(contacts);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
+
+
+

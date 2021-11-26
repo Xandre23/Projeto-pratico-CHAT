@@ -102,6 +102,54 @@ namespace ChatUni9.DAO
 
             return contacts;
         }
+        //essas duas de baixo testes
+        public async Task<IList<UserViewModel>> Proc(string name)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where nome like @nome");
+            command.Parameters.AddWithValue("@nome", "%" + name + "%");
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+
+            return user;
+        }
+
+        public async Task<IList<UserViewModel>> GetListContactss(string nome)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = (@"SELECT 
+               usuario.id,
+                usuario.nome,
+                usuario.sobrenome,
+                usuario.email,
+                usuario.senha,
+                usuario.sexo,
+                solicitacoes.id_usuario_emissor,
+                solicitacoes.id_usuario_receptor,
+                solicitacoes.status
+            FROM
+                usuario
+                    INNER JOIN
+                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+            WHERE
+                solicitacoes.status = 1
+                AND usuario.id != @userID
+                AND (solicitacoes.id_usuario_emissor = @userID
+                OR solicitacoes.id_usuario_emissor != @userID)
+                AND (solicitacoes.id_usuario_receptor = @userID
+                OR solicitacoes.id_usuario_receptor != @userID)
+            ORDER BY usuario.nome ASC");
+
+            command.Parameters.AddWithValue("@userID", nome);
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+
+            return user;
+        }
     }
 
 }
