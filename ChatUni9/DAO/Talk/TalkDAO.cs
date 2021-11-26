@@ -38,11 +38,11 @@ namespace ChatUni9.DAO.Talk
             //         INNER JOIN
             //    solicitacoes ON usuario.id IN (solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             //WHERE
-            //        (conversas.id_usuario_emissor = @loggedinuserid and usuario.id = @idcontact)
-            //        or(conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
-            //        or(conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
-            //        or(conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
-            //        AND (solicitacoes.status = 1)");
+            //    (conversas.id_usuario_emissor = @loggedinuserid and usuario.id = @idcontact)
+            //    OR (conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
+            //    OR (conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
+            //    OR (conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
+            //    OR (solicitacoes.status = 1 AND usuario.id = @idcontact)");
 
             command.CommandText = (@"SELECT
                 conversas.*,
@@ -57,12 +57,11 @@ namespace ChatUni9.DAO.Talk
                     INNER JOIN
                 solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             WHERE
-                 (conversas.id_usuario_emissor = @loggedinuserid) OR
-                (conversas.id_usuario_emissor = @idcontact) OR
-                (conversas.id_usuario_receptor = @idcontact) OR
-                (conversas.id_usuario_receptor = @loggedinuserid)
-                or(solicitacoes.status = 1 AND usuario.id = @idcontact)");
-
+                (conversas.id_usuario_emissor = @loggedinuserid and usuario.id = @idcontact)
+                OR (conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
+                OR (conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
+                OR (conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
+                OR (solicitacoes.status = 1 AND usuario.id = @idcontact)");
 
             command.Parameters.AddWithValue("@idcontact", idContact);
             command.Parameters.AddWithValue("@loggedinuserid", loggedInUserID);
