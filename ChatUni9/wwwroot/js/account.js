@@ -23,10 +23,10 @@
 });
 
 $("#btn-login").click(function () {
+
     const parameters = {
-        email: $("#inputEmail").val(),
-        password: $("#inputPassword").val()
-        
+        email: $("#loginEmail").val(),
+        password: $("#loginPassword").val()        
     }
 
     $.ajax({
