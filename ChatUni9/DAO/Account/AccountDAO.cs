@@ -61,7 +61,7 @@ namespace ChatUni9.DAO.Account
                     FROM
                         solicitacoes
                     WHERE
-                        id_usuario_receptor = usuario.id)";
+                        id_usuario_receptor = usuario.id) limit 6";
                         command.Parameters.AddWithValue("@nome","%"+nome+"%");
 
             var dataTable = await Select(command);
