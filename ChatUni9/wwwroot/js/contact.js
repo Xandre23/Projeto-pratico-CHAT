@@ -39,7 +39,7 @@ $(document).on('click', '.btn-add', function () {
     var user = {
         ID: $(this).data("userid")
     }
-
+    $("close").click();
     $.ajax({
         method: "POST",
         url: "/Contact/SendSolitation",

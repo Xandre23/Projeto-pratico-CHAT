@@ -44,8 +44,25 @@ namespace ChatUni9.DAO.Account
         public async Task<IList<UserViewModel>> Search(string nome)
         {
             var command = new MySqlCommand();
-            command.CommandText = "select * from usuario where nome like @nome";
-            command.Parameters.AddWithValue("@nome","%"+nome+"%");
+            command.CommandText = @"SELECT 
+                *
+            FROM
+                usuario
+            WHERE
+                usuario.nome LIKE @nome
+                    AND usuario.id NOT IN(SELECT
+                        id_usuario_emissor
+                    FROM
+                        solicitacoes
+                    WHERE
+                        id_usuario_emissor = usuario.id)
+                    AND usuario.id NOT IN(SELECT
+                        id_usuario_receptor
+                    FROM
+                        solicitacoes
+                    WHERE
+                        id_usuario_receptor = usuario.id) limit 6";
+                        command.Parameters.AddWithValue("@nome","%"+nome+"%");
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
