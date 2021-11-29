@@ -8,9 +8,9 @@
             </div>
             <div class="modal-body">
                 <div class="input-group">
-                    <input class="form-control" type="text" name="inputSearch" id="campo_busca" placeholder="Search" />
+                    <input class="form-control" type="text" name="inputSearch" id="campo_busca" placeholder="Procurar" />
                     <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit" id="btn-search">Search</button>
+                        <button class="btn btn-primary" type="submit" id="btn-search">Procurar</button>
                     </div>
                 </div>
                 <div>
@@ -18,14 +18,25 @@
                         <ul class="list-unstyled chat-list mt-2 mb-0">
                             @foreach (var user in Model)
                             {
+                                <div style="width:50px; float:left;">
+                                    <avatar-initials initials="@user.Nome.Substring(0, 1)@user.Sobrenome.Substring(0, 1)"
+                                                     auto-color="true"
+                                                     text-scale="1.2"
+                                                     text-weight="300"
+                                                     rounded
+                                                     text-color="white"
+                                                     size="45"
+                                                     border="1">
+                                    </avatar-initials>
+                                </div>
                                 <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">@user.Nome</div>
-                                        <div class="sobrenome">@user.Sobrenome</div>
-                                        <a href="#" class="btn btn-outline-success btn-sm form-control btn-add" data-userid="@user.ID">
-                                            <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i>Adicionar</div>
-                                        </a>
+                                    <div class="about col-md-10">
+                                        <div class="name">@user.Nome @user.Sobrenome</div>
+                                        <div class="col-md-6">
+                                            <a href="#" class="btn btn-outline-success btn-sm form-control btn-add" data-userid="@user.ID">
+                                                <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i>Adicionar</div>
+                                            </a>
+                                        </div>                                        
                                     </div>
                                 </li>
                             }
