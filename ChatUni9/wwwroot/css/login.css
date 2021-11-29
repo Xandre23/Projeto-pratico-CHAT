@@ -106,7 +106,7 @@ form input[type=email]:focus, form input[type=text]:focus, form input[type=numbe
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   border: solid 2px #4eb8dd;
 }
-form button {
+form a {
   display: block;
   margin: 0;
   padding: 0.65em 1em 1em;
@@ -123,7 +123,7 @@ form button {
   font-family: inherit;
   transition: background-color 0.2s ease-out;
 }
-form button:hover, form button:active {
+form a:hover, form a:active {
   background-color: #217093;
 }
 form .inputGroup1 .helper {
