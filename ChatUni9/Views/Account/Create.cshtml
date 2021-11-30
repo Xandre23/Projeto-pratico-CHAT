@@ -1,0 +1,35 @@
+﻿<form class="mt-5 mb-5" method="post" id="frm-create-account">
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="inputEmail">Nome</label>
+            <input type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword">Sobrenome</label>
+            <input type="text" class="form-control" id="inputSobrenome" name="inputSobrenome" placeholder="Sobrenome">
+        </div>
+        <div class="col-md-6">
+            <label for="selectEstado">Sexo</label>
+            <select id="inputSexo" class="form-control" name="inputSexo">
+                <option value="1" selected>Masculino</option>
+                <option value="2">Feminino</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword">Senha</label>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Senha">
+        </div>
+    </div>    
+    <a class="btn btn-primary mt-3" id="btn-create">Cadastrar</a>
+</form>
+
+@section Scripts {
+    <script src="~/js/account.js" asp-append-version="true"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

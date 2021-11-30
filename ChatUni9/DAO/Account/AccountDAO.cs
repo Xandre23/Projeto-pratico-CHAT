@@ -41,7 +41,7 @@ namespace ChatUni9.DAO.Account
 
 
 
-        public async Task<IList<UserViewModel>> Search(string nome)
+        public async Task<IList<UserViewModel>> Search(string nome, int userID)
         {
             var command = new MySqlCommand();
             command.CommandText = @"SELECT 
@@ -55,14 +55,15 @@ namespace ChatUni9.DAO.Account
                     FROM
                         solicitacoes
                     WHERE
-                        id_usuario_emissor = usuario.id)
+                        id_usuario_emissor = usuario.id and id_usuario_receptor = @userid)
                     AND usuario.id NOT IN(SELECT
                         id_usuario_receptor
                     FROM
                         solicitacoes
                     WHERE
-                        id_usuario_receptor = usuario.id) limit 6";
-                        command.Parameters.AddWithValue("@nome","%"+nome+"%");
+                        id_usuario_receptor = usuario.id and id_usuario_emissor = @userid) limit 6";
+            command.Parameters.AddWithValue("@nome","%"+nome+"%");
+            command.Parameters.AddWithValue("@userid", userID);
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
@@ -71,11 +72,12 @@ namespace ChatUni9.DAO.Account
             return user;
         }
 
-        public async Task UpdateLastSeen(int userID)
+        public async Task UpdateLastSeen(int userID, DateTime lastSeen)
         {
             var command = new MySqlCommand();
-            command.CommandText = "update usuario set visto_por_ultimo = now() where id = @userID";
+            command.CommandText = "update usuario set visto_por_ultimo = @lastseen where id = @userID";
             command.Parameters.AddWithValue("@userID", userID);
+            command.Parameters.AddWithValue("@lastseen", lastSeen);
 
             await Update(command);
         }

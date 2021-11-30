@@ -21,10 +21,10 @@
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <span class="py-3 px-md-2">
-                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Index">Crie a sua conta</a>
+                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Create">Crie a sua conta</a>
                     </span>
                     <span class="py-3 px-md-2">
-                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Login">Entre</a>
+                        <a class="text-white text-decoration-none" asp-area="" asp-controller="Account" asp-action="Index">Entre</a>
                     </span>
                 }
                 else
@@ -53,7 +53,7 @@
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - ChatUni9 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - ChatUni9 - Todos os direitos reservados.
         </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>

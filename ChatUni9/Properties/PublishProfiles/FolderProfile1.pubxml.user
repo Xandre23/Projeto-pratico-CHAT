@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\faculdade\segundo_semestre_2021\Projeto-pratico-CHAT\ChatUni9\ChatUni9\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2021-11-30T13:53:03.8623524Z;True|2021-11-30T10:00:09.3757854-03:00;True|2021-11-30T01:11:59.4895005-03:00;True|2021-11-29T23:31:04.0770462-03:00;True|2021-11-29T23:19:04.8291489-03:00;</History>
+  </PropertyGroup>
+</Project>

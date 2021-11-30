@@ -17,7 +17,7 @@ namespace ChatUni9.FactoryObject.Talk
                 listTalk.ID = Convert.ToInt32(item["user_id"]);
                 listTalk.Nome = Convert.ToString(item["nome"]);
                 listTalk.Sobrenome = Convert.ToString(item["sobrenome"]);
-
+                listTalk.LastSeen = Convert.ToDateTime(item["visto_por_ultimo"]);
                 if (!string.IsNullOrEmpty(Convert.ToString( item["id"])))
                 {
                     listTalk.Talk.Add(new TalkViewModel()

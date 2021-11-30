@@ -1,3 +1,4 @@
+
 ﻿$(document).ready(function () {
     $("#frm-create-account").validate({
         rules: {
@@ -64,6 +65,32 @@
                 }
             });
         },
+﻿$("#btn-create").click(function () {
+    var user = {
+        Nome: $("#inputNome").val(),
+        Sobrenome: $("#inputSobrenome").val(),
+        Email: $("#inputEmail").val(),
+        Senha: $("#inputPassword").val(),
+        Sexo: $("#inputSexo option:selected").val(),
+        tokengoogle: "",
+        tokenfacebook: ""
+    }
+
+    $.ajax({
+        type: "post",
+        url: "/account/create",
+        data: user,
+        datatype: "json",
+        success: function (response) {
+            if (response.code != 200) {
+                alert(response.message);
+            } else {
+                alert("Cadastro realizado com sucesso!");
+            }
+        },
+        error: function () {
+            alert('error');
+        }
     });
 });
 

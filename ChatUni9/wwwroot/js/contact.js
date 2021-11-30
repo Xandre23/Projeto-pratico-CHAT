@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $("#btn-add-contact").click(function () {
-        
+        $(".close").click();
         $.ajax({
             type: "get",
             url: "/Contact/Search",
@@ -17,11 +17,11 @@
     });
 });
 $(document).on('click', '#btn-search', function (event) {
+    $(".close").click();
     var filter = {
-        name: $("#campo_busca").val()
-        
+        name: $("#campo_busca").val()        
     }
-
+    $("close").click();
     $.ajax({
         method: "GET",
         url: "/Contact/Search",
@@ -39,7 +39,7 @@ $(document).on('click', '.btn-add', function () {
     var user = {
         ID: $(this).data("userid")
     }
-    $("close").click();
+    $(".close").click();
     $.ajax({
         method: "POST",
         url: "/Contact/SendSolitation",
@@ -72,7 +72,6 @@ $(document).on('click', '.btn-aceitar', function () {
         ID: $(this).data("solicitation")
     }
 
-
     $.ajax({
         method: "POST",
         url: "/Contact/Accept",
@@ -89,8 +88,7 @@ $(document).on('click', '.btn-recusar', function () {
     $(this).text("Solicitação excluida!");
     var solicitation = {
         ID: $(this).data("solicitation")
-    }
-   
+    }   
 
     $.ajax({
         method: "DELETE",
@@ -121,7 +119,6 @@ $(document).on('click', '#proc_teste', function (event) {
             $("#list-of-contacts").html(html);
         },
         error: function () {
-
             alert('error');
         }
     });

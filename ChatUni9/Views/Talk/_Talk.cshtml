@@ -21,15 +21,9 @@
                 }
                 else
                 {
-                    <small>visto pela última vez em 2 hours ago</small>
+            <small>visto pela última vez em @Model.LastSeen.ToString("dd/MM/yyyy") às @Model.LastSeen.ToString("HH:mm")</small>
                 }
             </div>
-        </div>
-        <div class="col-lg-6 hidden-sm text-right">
-            <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
-            <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
-            <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
-            <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
         </div>
     </div>
 </div>
@@ -42,7 +36,7 @@
             {
                 <li class="clearfix">
                     <div class="message-data text-right">
-                        <span class="message-data-time">@message.DateTime</span>
+                        <span class="message-data-time">@message.DateTime.ToString("HH:mm - dd/MM/yyyy")</span>
                     </div>
                     <div class="message other-message float-right">@message.Message</div>
                 </li>

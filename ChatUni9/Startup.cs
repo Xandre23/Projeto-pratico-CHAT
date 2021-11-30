@@ -24,7 +24,7 @@ namespace ChatUni9
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => {
-                options.LoginPath = "/Account/Login";
+                options.LoginPath = "/Account/Index";
             });
             services.AddControllersWithViews();
         }
@@ -54,7 +54,7 @@ namespace ChatUni9
                 endpoints.MapHub<ChatHub.ChatHub>("/chat");
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Talk}/{action=Index}/{id?}");
             });
         }
     }

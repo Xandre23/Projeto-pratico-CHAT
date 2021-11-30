@@ -15,18 +15,18 @@ namespace ChatUni9.Controllers
 {
     public class AccountController : Controller
     {
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public async Task Create(UserViewModel user)
+        public async Task<JsonResult> Create(UserViewModel user)
         {
             try
             {
@@ -34,10 +34,18 @@ namespace ChatUni9.Controllers
                 user.Senha = hash.GenerateHashSHA512(user.Senha);
                 var accountDAO = new AccountDAO();
                 await accountDAO.Create(user);
+                var httpResponse = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                return Json(httpResponse);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                string message = "Um erro ocorreu, tente novamente mais tarde"; 
+                if (ex.Message.Contains("usuario.email_UNIQUE"))
+                {
+                    message = "Esse Email já esta sendo utilizado";
+                }
+                var httpResponse = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), message);
+                return Json(httpResponse);
             }
         }
 
@@ -50,16 +58,10 @@ namespace ChatUni9.Controllers
                 string hashedPassword = hash.GenerateHashSHA512(password);
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
-                if (string.IsNullOrEmpty(user.Email))
+                if (user == null)
                 {
                     var result = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
-                }
-                if (user.Senha.Equals(password))
-
-                {
-                    var response = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
-                    return Json(response);
                 }
                 if (!user.Senha.Equals(hashedPassword))
                 {
@@ -83,10 +85,11 @@ namespace ChatUni9.Controllers
         {
             var accountDAO = new AccountDAO();
             int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
-            await accountDAO.UpdateLastSeen(loggedInUserID);
+            var lastSeen = DateTime.Now;
+            await accountDAO.UpdateLastSeen(loggedInUserID, lastSeen);
 
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
     }
 }
