@@ -22,7 +22,7 @@ Projeto acadêmico
   <h1>Página príncipal</h1>
  </div>
 <div align="center">
-<img width="960" alt="principal" src="https://user-images.githubusercontent.com/68565199/144124475-d9959aa1-73dd-4baf-868d-87fd569709cc.png">
+<img width="941" alt="principal1" src="https://user-images.githubusercontent.com/68565199/144124915-d37423de-46d5-40c9-b7a1-35a566135815.png">
 </div>
 
 
