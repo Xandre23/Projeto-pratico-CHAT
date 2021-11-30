@@ -7,6 +7,11 @@ Projeto acadêmico
 </div>
 
 <div align="center">
+   <h1>Link da aplicação</h1>
+   http://18.228.148.68/Account
+</div>
+
+<div align="center">
    <br>
    Projeto acâdemico desenvolvido em ASP.NET CORE, usando boas práticas de programação.
 </div>
