@@ -1,6 +1,12 @@
 # Projeto-pratico-CHAT
 Projeto acadêmico 
 <div align="center">
+   <h4>Nome e RA de cada um dos integrantes do grupo. </h4>
+   Leonardo Amorim Ramos RA: 921111379
+   Xandre De Paula Raimundo RA: 920102811
+</div>
+
+<div align="center">
    Projeto acâdemico desenvolvido em ASP.NET CORE, usando boas práticas de programação.
 </div>
 
