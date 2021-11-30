@@ -7,6 +7,7 @@ Projeto acadêmico
 </div>
 
 <div align="center">
+   <br>
    Projeto acâdemico desenvolvido em ASP.NET CORE, usando boas práticas de programação.
 </div>
 
