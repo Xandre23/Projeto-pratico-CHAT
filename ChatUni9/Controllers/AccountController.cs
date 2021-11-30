@@ -50,16 +50,10 @@ namespace ChatUni9.Controllers
                 string hashedPassword = hash.GenerateHashSHA512(password);
                 var accountDAO = new AccountDAO();
                 var user = await accountDAO.Login(email);
-                if (string.IsNullOrEmpty(user.Email))
+                if (user == null)
                 {
                     var result = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
                     return Json(result);
-                }
-                if (user.Senha.Equals(password))
-
-                {
-                    var response = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), "Email não encontrado");
-                    return Json(response);
                 }
                 if (!user.Senha.Equals(hashedPassword))
                 {
