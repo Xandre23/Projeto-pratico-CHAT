@@ -82,6 +82,10 @@ $("#btn-login").click(function () {
         password: $("#loginPassword").val()
     }
 
+    if (!parameters.email || !parameters.password) {
+        return;
+    }
+
     $.ajax({
         type: "POST",
         url: "/Account/Login",
