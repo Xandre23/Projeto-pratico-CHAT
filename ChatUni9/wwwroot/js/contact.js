@@ -116,8 +116,11 @@ $(document).on('click', '#proc_teste', function (event) {
         url: "/Contact/Proc",
         datatype: "json",
         data: filter,
-        success: function () { alert('success'); },
+        success: function (html) {
+            console.log(html);
+        },
         error: function () {
+
             alert('error');
         }
     });

@@ -104,12 +104,16 @@ namespace ChatUni9.Controllers
         {
             try
             {
-               
-              
-                var contactDAO = new ContactDAO();
-                var contacts = await contactDAO.GetListContactss(name);
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = "a";
+                }
 
-                return View(contacts);
+                var contactDAO = new ContactDAO();
+                int ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                var contacts = await contactDAO.GetListContactss(ID.ToString());
+               
+                return PartialView("/Views/Contact/_Contacts.cshtml", contacts);
             }
 
             catch (Exception ex)
