@@ -7,7 +7,6 @@
         Sexo: $("#inputSexo option:selected").val(),
         tokengoogle: "",
         tokenfacebook: ""
-
     }
 
     $.ajax({

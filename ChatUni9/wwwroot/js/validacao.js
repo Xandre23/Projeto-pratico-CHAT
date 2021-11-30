@@ -37,9 +37,6 @@
 			inputPassword: {
 				required: 'Por favor, Insira sua senha.'
 			}
-
-
-        }
-		
+        }		
 	})
 })

@@ -61,11 +61,13 @@ namespace ChatUni9.DAO.Talk
                 OR (conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
                 OR (conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
                 OR (conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
-                OR (solicitacoes.status = 1 AND usuario.id = @idcontact)");
+                OR (solicitacoes.status = 1 AND usuario.id = @idcontact) 
+            GROUP BY conversas.id
+            ORDER BY conversas.data_hora ASC");
 
             command.Parameters.AddWithValue("@idcontact", idContact);
             command.Parameters.AddWithValue("@loggedinuserid", loggedInUserID);
-
+                    
             var dataTable = await Select(command);
             var factoryObject = new FactoryTalk();
             var conversationHistory = factoryObject.Factory(dataTable);
