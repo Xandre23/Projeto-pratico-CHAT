@@ -72,7 +72,6 @@ $(document).on('click', '.btn-aceitar', function () {
         ID: $(this).data("solicitation")
     }
 
-
     $.ajax({
         method: "POST",
         url: "/Contact/Accept",
@@ -89,8 +88,7 @@ $(document).on('click', '.btn-recusar', function () {
     $(this).text("Solicitação excluida!");
     var solicitation = {
         ID: $(this).data("solicitation")
-    }
-   
+    }   
 
     $.ajax({
         method: "DELETE",
