@@ -4,4 +4,7 @@ Projeto acadêmico
 
 
 Login do sistema:
-<img width="800" alt="login" src="https://user-images.githubusercontent.com/68565199/144121953-d7dc628d-ab36-4182-8bd7-f942a1d9ee4e.png">
+<div align="center">
+<img width="221" alt="login1" src="https://user-images.githubusercontent.com/68565199/144123547-6888adf2-8935-480b-88a1-a85ce7c8ef9f.png">
+
+</div>
