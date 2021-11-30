@@ -92,25 +92,11 @@ namespace ChatUni9.DAO
             ORDER BY usuario.nome ASC");
             command.Parameters.AddWithValue("@userID", userID);
 
-
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();
             var contacts = factoryUser.Factory(dataTable);
 
             return contacts;
-        }
-        //essas duas de baixo testes
-        public async Task<IList<UserViewModel>> Proc(string name)
-        {
-            var command = new MySqlCommand();
-            command.CommandText = ("select * from usuario where nome like @nome");
-            command.Parameters.AddWithValue("@nome", "%" + name + "%");
-
-            var dataTable = await Select(command);
-            var factoryUser = new FactoryUser();
-            var user = factoryUser.Factory(dataTable);
-
-            return user;
         }
 
         public async Task<IList<UserViewModel>> GetListContacts(int userID, string filtro)
