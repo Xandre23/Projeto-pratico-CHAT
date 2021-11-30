@@ -102,6 +102,57 @@ namespace ChatUni9.DAO
 
             return contacts;
         }
+        //essas duas de baixo testes
+        public async Task<IList<UserViewModel>> Proc(string name)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where nome like @nome");
+            command.Parameters.AddWithValue("@nome", "%" + name + "%");
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+
+            return user;
+        }
+
+        public async Task<IList<UserViewModel>> GetListContacts(int userID, string filtro)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = (@"SELECT 
+               usuario.id,
+                usuario.nome,
+                usuario.sobrenome,
+                usuario.email,
+                usuario.senha,
+                usuario.sexo,
+                solicitacoes.id_usuario_emissor,
+                solicitacoes.id_usuario_receptor,
+                solicitacoes.status
+            FROM
+                usuario
+                    INNER JOIN
+                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+            WHERE
+                solicitacoes.status = 1
+                AND usuario.id != @userID
+                AND (solicitacoes.id_usuario_emissor = @userID
+                OR solicitacoes.id_usuario_emissor != @userID)
+                AND (solicitacoes.id_usuario_receptor = @userID
+                OR solicitacoes.id_usuario_receptor != @userID)
+                AND usuario.nome LIKE @filtro
+            group by usuario.id
+            ORDER BY usuario.nome ASC");
+
+            command.Parameters.AddWithValue("@userID", userID);
+            command.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+
+            return user;
+        }
     }
 
 }

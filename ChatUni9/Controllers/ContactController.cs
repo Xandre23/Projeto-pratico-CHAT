@@ -99,5 +99,24 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Get(string filter)
+        {
+            try
+            {
+                var contactDAO = new ContactDAO();
+                int ID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                var contacts = await contactDAO.GetListContacts(ID, filter);
+                ViewBag.OnlineUsers = ConnectedUserViewModel.Ids;
+                return PartialView("/Views/Contact/_Contacts.cshtml", contacts);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
+
+
+

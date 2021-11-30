@@ -1,0 +1,40 @@
+﻿@model IList<ChatUni9.Models.UserViewModel>
+@if (Model.Count > 0)
+{
+    foreach (var user in Model)
+    {
+        <li class="clearfix contact container" data-userid="@user.ID">
+            <div style="width:50px; float:left">
+                <avatar-initials initials="@user.Nome.Substring(0, 1)@user.Sobrenome.Substring(0, 1)"
+                                 auto-color="true"
+                                 text-scale="1.2"
+                                 text-weight="300"
+                                 rounded
+                                 text-color="white"
+                                 size="45"
+                                 border="1">
+                </avatar-initials>
+            </div>
+            <div class="about">
+                <div class="name">@user.Nome</div>
+                @if (ViewBag.OnlineUsers.Contains(user.ID.ToString()))
+                {
+                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                }
+                else
+                {
+                    <div class="status"> <i class="fa fa-circle offline"></i> offline </div>
+                }
+            </div>
+        </li>
+    }
+}
+else
+{
+    <li class="clearfix active">
+        <div class="about">
+            <div class="name">Nenhum usuário encontrado</div>
+            <div class="status">Pesquisi novamente...</div>
+        </div>
+    </li>
+}

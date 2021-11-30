@@ -104,3 +104,25 @@ $(document).on('click', '.btn-recusar', function () {
         }
     });
 });
+
+$(document).on('click', '#proc_teste', function (event) {
+    var filter = {
+        filter: $("#campo_nome").val()
+    }
+    if (!filter.filter) {
+        return;   
+    }
+    $.ajax({
+        method: "GET",
+        url: "/Contact/Get",
+        datatype: "json",
+        data: filter,
+        success: function (html) {
+            $("#list-of-contacts").html(html);
+        },
+        error: function () {
+
+            alert('error');
+        }
+    });
+});

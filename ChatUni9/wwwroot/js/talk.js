@@ -24,6 +24,7 @@ connection.start().then(function () {
 }).catch(function (err) {
     return console.error(err.toString());
 });
+
 $(document).on('click', '#send', function (event) {
 
     var user = $(this).data("iduserreceiver");
