@@ -120,17 +120,14 @@
     <div class="inputGroup inputGroup3">
         <a id="btn-login">Entrar</a>
     </div>
-    <div class="inputGroup inputGroup3" >
+    <div class="inputGroup inputGroup3">
         <a style="text-decoration:none;" href="/Account/Create">Ainda não tenho conta</a>
     </div>
-    <button type="submit" class="btn btn-primary mt-3" id="btn-create">Cadastrar</button>
 </form>
 @section Scripts {
-
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-    @*<script src="js/validacao.js"></script>*@
     <script src="~/js/account.js" asp-append-version="true"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

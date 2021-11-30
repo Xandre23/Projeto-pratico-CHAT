@@ -1,5 +1,4 @@
-
-﻿$(document).ready(function () {
+$(document).ready(function () {
     $("#frm-create-account").validate({
         rules: {
             inputNome: {
@@ -59,68 +58,22 @@
                 url: "/account/create",
                 data: user,
                 datatype: "json",
-                success: function () { alert('success'); },
+                success: function (response) {
+                    if (response.code != 200) {
+                        alert(response.message);
+                    } else {
+                        alert("Cadastro realizado com sucesso")
+                        window.location.href = "/Account/Index";
+                    }
+                },
                 error: function () {
                     alert('error');
                 }
             });
         },
-﻿$("#btn-create").click(function () {
-    var user = {
-        Nome: $("#inputNome").val(),
-        Sobrenome: $("#inputSobrenome").val(),
-        Email: $("#inputEmail").val(),
-        Senha: $("#inputPassword").val(),
-        Sexo: $("#inputSexo option:selected").val(),
-        tokengoogle: "",
-        tokenfacebook: ""
-    }
-
-    $.ajax({
-        type: "post",
-        url: "/account/create",
-        data: user,
-        datatype: "json",
-        success: function (response) {
-            if (response.code != 200) {
-                alert(response.message);
-            } else {
-                alert("Cadastro realizado com sucesso!");
-            }
-        },
-        error: function () {
-            alert('error');
-        }
     });
 });
 
-
-
-
-
-
-//$("#btn-create", "#frm-create-account").click(function () {
-//    var user = {
-//        Nome: $("#inputNome").val(),
-//        Sobrenome: $("#inputSobrenome").val(),
-//        Email: $("#inputEmail").val(),
-//        Senha: $("#inputPassword").val(),
-//        Sexo: $("#inputSexo option:selected").val(),
-//        tokengoogle: "",
-//        tokenfacebook: ""
-//    }
-
-//    $.ajax({
-//        type: "post",
-//        url: "/account/create",
-//        data: user,
-//        datatype: "json",
-//        success: function () { alert('success'); },
-//        error: function () {
-//            alert('error');
-//        }
-//    });
-//});
 
 $("#btn-login").click(function () {
 
