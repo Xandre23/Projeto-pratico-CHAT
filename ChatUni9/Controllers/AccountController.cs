@@ -15,12 +15,12 @@ namespace ChatUni9.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Index()
         {
             return View();
         }
@@ -86,7 +86,7 @@ namespace ChatUni9.Controllers
             await accountDAO.UpdateLastSeen(loggedInUserID);
 
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
     }
 }
