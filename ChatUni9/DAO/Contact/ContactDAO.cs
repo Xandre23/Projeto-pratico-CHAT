@@ -116,7 +116,7 @@ namespace ChatUni9.DAO
             return user;
         }
 
-        public async Task<IList<UserViewModel>> GetListContactss(string nome)
+        public async Task<IList<UserViewModel>> GetListContacts(int userID, string filtro)
         {
             var command = new MySqlCommand();
             command.CommandText = (@"SELECT 
@@ -140,9 +140,12 @@ namespace ChatUni9.DAO
                 OR solicitacoes.id_usuario_emissor != @userID)
                 AND (solicitacoes.id_usuario_receptor = @userID
                 OR solicitacoes.id_usuario_receptor != @userID)
+                AND usuario.nome LIKE @filtro
+            group by usuario.id
             ORDER BY usuario.nome ASC");
 
-            command.Parameters.AddWithValue("@userID", nome);
+            command.Parameters.AddWithValue("@userID", userID);
+            command.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();

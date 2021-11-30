@@ -107,17 +107,18 @@ $(document).on('click', '.btn-recusar', function () {
 
 $(document).on('click', '#proc_teste', function (event) {
     var filter = {
-        name: $("#campo_nome").val()
-
+        filter: $("#campo_nome").val()
     }
-
+    if (!filter.filter) {
+        return;   
+    }
     $.ajax({
         method: "GET",
-        url: "/Contact/Proc",
+        url: "/Contact/Get",
         datatype: "json",
         data: filter,
         success: function (html) {
-            console.log(html);
+            $("#list-of-contacts").html(html);
         },
         error: function () {
 
