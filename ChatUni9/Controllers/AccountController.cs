@@ -26,7 +26,7 @@ namespace ChatUni9.Controllers
         }
 
         [HttpPost]
-        public async Task Create(UserViewModel user)
+        public async Task<JsonResult> Create(UserViewModel user)
         {
             try
             {
@@ -34,10 +34,18 @@ namespace ChatUni9.Controllers
                 user.Senha = hash.GenerateHashSHA512(user.Senha);
                 var accountDAO = new AccountDAO();
                 await accountDAO.Create(user);
+                var httpResponse = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.OK), string.Empty);
+                return Json(httpResponse);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                string message = "Um erro ocorreu, tente novamente mais tarde"; 
+                if (ex.Message.Contains("usuario.email_UNIQUE"))
+                {
+                    message = "Esse Email já esta sendo utilizado";
+                }
+                var httpResponse = new HttpResponseViewlModel(Convert.ToInt32(HttpStatusCode.BadRequest), message);
+                return Json(httpResponse);
             }
         }
 
