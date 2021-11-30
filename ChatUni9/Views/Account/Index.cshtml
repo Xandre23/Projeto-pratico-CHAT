@@ -103,7 +103,6 @@
             </svg>
         </div>
     </div>
-
     <div class="inputGroup inputGroup1">
         <label for="loginEmail" id="loginEmailLabel">Email</label>
         <input type="email" id="loginEmail" maxlength="254" />
@@ -125,8 +124,11 @@
         <a style="text-decoration:none;" href="/Account/Create">Ainda não tenho conta</a>
     </div>
 </form>
-
 @section Scripts {
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <script src="js/validacao.js"></script>
     <script src="~/js/account.js" asp-append-version="true"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

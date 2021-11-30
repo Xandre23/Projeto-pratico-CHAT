@@ -1,4 +1,10 @@
-﻿body {
+﻿.error{
+    color:red;
+    font-style: italic;
+}
+
+
+body {
     background-color: #f4f7f6;
     margin-top: 20px;
 }
