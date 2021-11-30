@@ -4,8 +4,8 @@ Projeto acadêmico
    Projeto acâdemico desenvolvido em ASP.NET CORE, usando boas práticas de programação.
 </div>
 
-<div align="right">
-   Algumas imagens do Sistema.
+<div align="center">
+   <h3Algumas imagens do Sistema.</h3>
 </div>
 <div align="center">
   <h1>Login do sistema:</h1>
