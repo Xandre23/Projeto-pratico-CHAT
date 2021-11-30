@@ -1,7 +1,12 @@
 # Projeto-pratico-CHAT
 Projeto acadêmico 
+<div align="center">
+   Projeto acâdemico desenvolvido em ASP.NET CORE, usando boas práticas de programação.
+</div>
 
-
+<div align="right">
+   Algumas imagens do Sistema.
+</div>
 <div align="center">
   <h1>Login do sistema:</h1>
  </div>
