@@ -84,14 +84,10 @@ namespace ChatUni9.DAO
             FROM
                 usuario
                     INNER JOIN
-                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+                solicitacoes ON usuario.id IN (solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             WHERE
-                solicitacoes.status = 1
-                AND usuario.id != @userID
-                AND (solicitacoes.id_usuario_emissor = @userID
-                OR solicitacoes.id_usuario_emissor != @userID)
-                AND (solicitacoes.id_usuario_receptor = @userID
-                OR solicitacoes.id_usuario_receptor != @userID)
+	            usuario.id != @userID AND solicitacoes.status = 1
+	            AND (solicitacoes.id_usuario_emissor = @userID OR solicitacoes.id_usuario_receptor = 1)       
             GROUP BY usuario.id
             ORDER BY usuario.nome ASC");
             command.Parameters.AddWithValue("@userID", userID);
