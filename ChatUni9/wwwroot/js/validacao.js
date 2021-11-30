@@ -1,27 +1,27 @@
-﻿$(document).ready(function () {
+﻿$$(document).ready(function () {
 	$("#frm-create-account").validate({
 		rules: {
 			inputNome: {
 				required: true,
 				maxlength: 30,
 				minlength: 2
-	
+
 			},
 			inputSobrenome: {
 				required: true,
 				maxlength: 30,
 				minlength: 10
-				
+
 			},
-	
+
 			inputEmail: {
 				required: true,
 				email: true
-				
+
 			},
 			inputPassword: {
 				required: true
-				
+
 			}
 		},
 		messages: {
@@ -39,7 +39,10 @@
 			}
 
 
-        }
-		
+		}
+
 	})
 })
+
+
+

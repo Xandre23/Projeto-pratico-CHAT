@@ -1,4 +1,4 @@
-﻿$("#btn-create").click(function () {
+﻿$("#btn-create", "#frm-create-account").click(function () {
     var user = {
         Nome: $("#inputNome").val(),
         Sobrenome: $("#inputSobrenome").val(),
