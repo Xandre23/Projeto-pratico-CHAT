@@ -83,7 +83,8 @@ namespace ChatUni9.Controllers
         {
             var accountDAO = new AccountDAO();
             int loggedInUserID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
-            await accountDAO.UpdateLastSeen(loggedInUserID);
+            var lastSeen = DateTime.Now;
+            await accountDAO.UpdateLastSeen(loggedInUserID, lastSeen);
 
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index");
