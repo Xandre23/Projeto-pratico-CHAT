@@ -25,11 +25,21 @@
             <label for="inputPassword">Senha</label>
             <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Senha">
         </div>
-    </div>    
+    </div>
     <a class="btn btn-primary mt-3" id="btn-create">Cadastrar</a>
 </form>
+<style>
+    .error {
+        color: red;
+        font-style: italic;
+    }
+</style>
 
 @section Scripts {
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <script src="js/validacao.js"></script>
     <script src="~/js/account.js" asp-append-version="true"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
