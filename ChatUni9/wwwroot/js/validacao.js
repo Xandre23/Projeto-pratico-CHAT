@@ -1,4 +1,4 @@
-﻿$$(document).ready(function () {
+﻿$(document).ready(function () {
 	$("#frm-create-account").validate({
 		rules: {
 			inputNome: {
@@ -11,7 +11,6 @@
 				required: true,
 				maxlength: 30,
 				minlength: 10
-
 			},
 
 			inputEmail: {
@@ -37,7 +36,6 @@
 			inputPassword: {
 				required: 'Por favor, Insira sua senha.'
 			}
-
 
 		}
 
