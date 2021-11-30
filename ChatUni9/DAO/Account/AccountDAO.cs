@@ -71,11 +71,12 @@ namespace ChatUni9.DAO.Account
             return user;
         }
 
-        public async Task UpdateLastSeen(int userID)
+        public async Task UpdateLastSeen(int userID, DateTime lastSeen)
         {
             var command = new MySqlCommand();
-            command.CommandText = "update usuario set visto_por_ultimo = now() where id = @userID";
+            command.CommandText = "update usuario set visto_por_ultimo = @lastseen where id = @userID";
             command.Parameters.AddWithValue("@userID", userID);
+            command.Parameters.AddWithValue("@lastseen", lastSeen);
 
             await Update(command);
         }

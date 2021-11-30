@@ -54,7 +54,7 @@ namespace ChatUni9
                 endpoints.MapHub<ChatHub.ChatHub>("/chat");
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Index}/{id?}");
+                    pattern: "{controller=Talk}/{action=Index}/{id?}");
             });
         }
     }

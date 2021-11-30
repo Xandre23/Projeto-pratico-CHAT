@@ -92,6 +92,7 @@ namespace ChatUni9.DAO
                 OR solicitacoes.id_usuario_emissor != @userID)
                 AND (solicitacoes.id_usuario_receptor = @userID
                 OR solicitacoes.id_usuario_receptor != @userID)
+            GROUP BY usuario.id
             ORDER BY usuario.nome ASC");
             command.Parameters.AddWithValue("@userID", userID);
 

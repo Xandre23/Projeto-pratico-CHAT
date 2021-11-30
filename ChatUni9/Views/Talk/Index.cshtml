@@ -14,11 +14,10 @@
                         </a>
                     </div>
                     <div class="input-group" id="list">
+                        <input type="text" class="form-control" id="campo_nome" placeholder="Procurar...">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="proc_teste"><i class="fa fa-search"></i></span>
+                            <span class="input-group-text" id="proc_teste" style="cursor:pointer"><i class="fa fa-search"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="campo_nome" placeholder="Search...">
-
                     </div>
                     <ul class="list-unstyled chat-list mt-2 mb-0" id="list-of-contacts">
                         @if (Model.Count > 0)
