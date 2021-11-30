@@ -5,23 +5,22 @@
 				required: true,
 				maxlength: 30,
 				minlength: 2
-	
+
 			},
 			inputSobrenome: {
 				required: true,
 				maxlength: 30,
 				minlength: 10
-				
 			},
-	
+
 			inputEmail: {
 				required: true,
 				email: true
-				
+
 			},
 			inputPassword: {
 				required: true
-				
+
 			}
 		},
 		messages: {
@@ -37,6 +36,12 @@
 			inputPassword: {
 				required: 'Por favor, Insira sua senha.'
 			}
+
+		}
+
         }		
 	})
 })
+
+
+
