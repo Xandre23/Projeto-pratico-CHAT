@@ -14,8 +14,18 @@
                             {
                                 @foreach (var receiveSolicitation in Model)
                                 {
+                                    <div style="width:50px; float:left;">
+                                        <avatar-initials initials="@receiveSolicitation.Nome.Substring(0, 1)@receiveSolicitation.Sobrenome.Substring(0, 1)"
+                                                         auto-color="true"
+                                                         text-scale="1.2"
+                                                         text-weight="300"
+                                                         rounded
+                                                         text-color="white"
+                                                         size="45"
+                                                         border="1">
+                                        </avatar-initials>
+                                    </div>
                                     <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                         <div class="about">
                                             <div>@receiveSolicitation.Nome @receiveSolicitation.Sobrenome</div>
                                             <a href="#" class="btn btn-outline-info btn-sm form-control btn-aceitar" data-solicitation="@receiveSolicitation.ID">
