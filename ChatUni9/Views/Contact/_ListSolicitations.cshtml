@@ -10,21 +10,32 @@
                 <div>
                     <div id="" class="people-list">
                         <ul class="list-unstyled chat-list mt-2 mb-0">
-                            @foreach (var receiveSolicitation in Model)
+                            @if (Model.Count() > 0)
                             {
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                @foreach (var receiveSolicitation in Model)
+                                {
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                        <div class="about">
+                                            <div>@receiveSolicitation.Nome @receiveSolicitation.Sobrenome</div>
+                                            <a href="#" class="btn btn-outline-info btn-sm form-control btn-aceitar" data-solicitation="@receiveSolicitation.ID">
+                                                <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Aceitar</div>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-danger btn-sm form-control btn-recusar" data-solicitation="@receiveSolicitation.ID">
+                                                <div><i class="fa fa-times" aria-hidden="true" type="submit"></i> Recusar</div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="clearfix active">
                                     <div class="about">
-                                        <div>@receiveSolicitation.Nome @receiveSolicitation.Sobrenome</div>
-                                        <a href="#" class="btn btn-outline-info btn-sm form-control btn-aceitar" data-solicitation="@receiveSolicitation.ID">
-                                            <div><i class="fa fa-plus" aria-hidden="true" type="submit"></i> Aceitar</div>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-danger btn-sm form-control btn-recusar" data-solicitation="@receiveSolicitation.ID">
-                                            <div><i class="fa fa-times" aria-hidden="true" type="submit"></i> Recusar</div>
-                                        </a>
+                                        <div class="name">Nenha solitação pendente...</div>
                                     </div>
                                 </li>
-                                }
+                            }
                         </ul>
                     </div>
                 </div>

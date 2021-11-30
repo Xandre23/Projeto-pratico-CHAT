@@ -90,7 +90,7 @@ function makeHTMLMessageReceive(hour, formattedDate, message) {
     focusOnTheLastMessage();
 }
 
-$(".contact").click(function () {
+$(document).on('click', '.contact', function () {
     const userID = {
         userID: $(this).data("userid")
     };

@@ -41,7 +41,7 @@ namespace ChatUni9.DAO.Account
 
 
 
-        public async Task<IList<UserViewModel>> Search(string nome)
+        public async Task<IList<UserViewModel>> Search(string nome, int userID)
         {
             var command = new MySqlCommand();
             command.CommandText = @"SELECT 
@@ -55,14 +55,15 @@ namespace ChatUni9.DAO.Account
                     FROM
                         solicitacoes
                     WHERE
-                        id_usuario_emissor = usuario.id)
+                        id_usuario_emissor = usuario.id and id_usuario_receptor = @userid)
                     AND usuario.id NOT IN(SELECT
                         id_usuario_receptor
                     FROM
                         solicitacoes
                     WHERE
-                        id_usuario_receptor = usuario.id) limit 6";
-                        command.Parameters.AddWithValue("@nome","%"+nome+"%");
+                        id_usuario_receptor = usuario.id and id_usuario_emissor = @userid) limit 6";
+            command.Parameters.AddWithValue("@nome","%"+nome+"%");
+            command.Parameters.AddWithValue("@userid", userID);
 
             var dataTable = await Select(command);
             var factoryUser = new FactoryUser();

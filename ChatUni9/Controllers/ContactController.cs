@@ -31,8 +31,9 @@ namespace ChatUni9.Controllers
                 {
                     name = "a";
                 }
+                int userID = Convert.ToInt32(this.HttpContext.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value);
                 var accountDAO = new AccountDAO();
-                var user = await accountDAO.Search(name);
+                var user = await accountDAO.Search(name, userID);
 
                 return PartialView("/Views/Contact/_AddContact.cshtml", user);
             }

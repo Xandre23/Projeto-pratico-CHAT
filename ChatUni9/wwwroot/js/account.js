@@ -14,7 +14,13 @@
         url: "/account/create",
         data: user,
         datatype: "json",
-        success: function () { alert('success'); },
+        success: function (response) {
+            if (response.code != 200) {
+                alert(response.message);
+            } else {
+                alert("Cadastro realizado com sucesso!");
+            }
+        },
         error: function () {
             alert('error');
         }
@@ -40,7 +46,6 @@ $("#btn-login").click(function () {
             } else {
                 window.location.href = "/Talk";
             }
-
         },
         error: function () {
             alert("error");
