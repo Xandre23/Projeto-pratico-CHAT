@@ -1,4 +1,5 @@
-﻿using ChatUni9.FactoryObject.Talk;
+﻿using ChatUni9.DAO.Account;
+using ChatUni9.FactoryObject.Talk;
 using ChatUni9.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -24,55 +25,31 @@ namespace ChatUni9.DAO.Talk
 
         internal async Task<UserViewModel> GetMessages(int idContact, int loggedInUserID)
         {
+            var accountDAO = new AccountDAO();
+            var user = await accountDAO.Get(idContact);
             var command = new MySqlCommand();
-            //command.CommandText = (@"SELECT 
-            //    conversas.*,
-            //    usuario.id as 'user_id',
-            //    usuario.nome,
-            //    usuario.sobrenome,
-            //    usuario.visto_por_ultimo
-            //from
-            //    conversas
-            //        inner join
-            //    usuario
-            //         INNER JOIN
-            //    solicitacoes ON usuario.id IN (solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
-            //WHERE
-            //    (conversas.id_usuario_emissor = @loggedinuserid and usuario.id = @idcontact)
-            //    OR (conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
-            //    OR (conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
-            //    OR (conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
-            //    OR (solicitacoes.status = 1 AND usuario.id = @idcontact)");
 
-            command.CommandText = (@"SELECT
-                conversas.*,
-                usuario.id AS 'user_id',
-                usuario.nome,
-                usuario.sobrenome,
-                usuario.visto_por_ultimo
+            command.CommandText = (@"SELECT 
+                conversas.*
             FROM
                 conversas
-                    RIGHT JOIN
-                usuario ON usuario.id IN(conversas.id_usuario_emissor , conversas.id_usuario_receptor)
                     INNER JOIN
-                solicitacoes ON usuario.id IN(solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
+                usuario ON usuario.id IN (conversas.id_usuario_emissor , conversas.id_usuario_receptor)
+                    INNER JOIN
+                solicitacoes ON usuario.id IN (solicitacoes.id_usuario_emissor , solicitacoes.id_usuario_receptor)
             WHERE
-                (conversas.id_usuario_emissor = @loggedinuserid and usuario.id = @idcontact)
-                OR (conversas.id_usuario_emissor = @idcontact and usuario.id = @idcontact)
-                OR (conversas.id_usuario_receptor = @idcontact and usuario.id = @idcontact)
-                OR (conversas.id_usuario_receptor = @loggedinuserid and usuario.id = @idcontact)
-                OR (solicitacoes.status = 1 AND usuario.id = @idcontact) 
-            GROUP BY conversas.id
-            ORDER BY conversas.data_hora ASC");
+                solicitacoes.status = 1
+            AND (conversas.id_usuario_emissor = @idcontact AND conversas.id_usuario_receptor = @loggedinuserid)
+            OR (conversas.id_usuario_emissor = @loggedinuserid AND conversas.id_usuario_receptor = @idcontact)
+            GROUP BY conversas.id ORDER BY conversas.data_hora ASC");
 
             command.Parameters.AddWithValue("@idcontact", idContact);
             command.Parameters.AddWithValue("@loggedinuserid", loggedInUserID);
-                    
+
             var dataTable = await Select(command);
             var factoryObject = new FactoryTalk();
-            var conversationHistory = factoryObject.Factory(dataTable);
-
-            return conversationHistory;
+            user.Talk = factoryObject.Factory(dataTable);
+            return user;
         }
     }
 }

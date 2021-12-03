@@ -13,7 +13,7 @@ namespace ChatUni9.DAO.Account
 
     public class AccountDAO : ExecuteCommandMySQL
     {
-        public async Task<UserViewModel> Login(string email)
+        internal async Task<UserViewModel> Login(string email)
         {
             var command = new MySqlCommand();
             command.CommandText = ("select * from usuario where email=@email");
@@ -25,7 +25,19 @@ namespace ChatUni9.DAO.Account
             return user.FirstOrDefault();
         }
 
-        public async Task Create(UserViewModel user)
+        internal async Task<UserViewModel> Get(int id)
+        {
+            var command = new MySqlCommand();
+            command.CommandText = ("select * from usuario where id=@userid");
+            command.Parameters.AddWithValue("@userid", id);
+
+            var dataTable = await Select(command);
+            var factoryUser = new FactoryUser();
+            var user = factoryUser.Factory(dataTable);
+            return user.FirstOrDefault();
+        }
+
+        internal async Task Create(UserViewModel user)
         {
             var command = new MySqlCommand();
             command.CommandText = "insert into usuario (nome, sobrenome, email, senha, sexo) values(@nome, @sobrenome, @email, @senha, @sexo)";
@@ -39,9 +51,7 @@ namespace ChatUni9.DAO.Account
             await Insert(command);
         }
 
-
-
-        public async Task<IList<UserViewModel>> Search(string nome, int userID)
+        internal async Task<IList<UserViewModel>> Search(string nome, int userID)
         {
             var command = new MySqlCommand();
             command.CommandText = @"SELECT 
@@ -72,7 +82,7 @@ namespace ChatUni9.DAO.Account
             return user;
         }
 
-        public async Task UpdateLastSeen(int userID, DateTime lastSeen)
+        internal async Task UpdateLastSeen(int userID, DateTime lastSeen)
         {
             var command = new MySqlCommand();
             command.CommandText = "update usuario set visto_por_ultimo = @lastseen where id = @userID";

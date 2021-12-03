@@ -21,6 +21,7 @@ namespace ChatUni9.FactoryObject.User
                 user.Senha = Convert.ToString(item["senha"]);
                 user.Nome = Convert.ToString(item["nome"]);
                 user.Sobrenome = Convert.ToString(item["sobrenome"]);
+                user.LastSeen = Convert.ToDateTime(item["visto_por_ultimo"]);
                 user.Sexo = Convert.ToString(item["sexo"]);
                 list.Add(user);
             }

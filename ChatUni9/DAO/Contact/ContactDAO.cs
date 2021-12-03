@@ -75,6 +75,7 @@ namespace ChatUni9.DAO
                 usuario.id,
                 usuario.nome,
                 usuario.sobrenome,
+                usuario.visto_por_ultimo,
                 usuario.email,
                 usuario.senha,
                 usuario.sexo,

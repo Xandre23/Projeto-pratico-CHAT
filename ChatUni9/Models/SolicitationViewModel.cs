@@ -8,6 +8,5 @@ namespace ChatUni9.Models
     public class SolicitationViewModel : UserViewModel
     {
         public int ID { get; set; }
-
     }
 }
