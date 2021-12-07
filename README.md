@@ -8,7 +8,7 @@ Projeto acadêmico
 
 <div align="center">
    <h1>Link da aplicação</h1>
-   http://18.228.148.68/Account
+   http://ec2-54-94-28-94.sa-east-1.compute.amazonaws.com/
 </div>
 
 <div align="center">
