@@ -91,7 +91,7 @@ $(document).on('click', '.btn-recusar', function () {
     }   
 
     $.ajax({
-        method: "DELETE",
+        method: "POST",
         url: "/Contact/Refuse",
         datatype: "json",
         data: solicitation,

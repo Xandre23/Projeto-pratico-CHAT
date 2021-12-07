@@ -29,7 +29,14 @@ namespace ChatUni9.ChatHub
             if (userIsLoggedIn)
             {
                 talkViewModel.Visualized = true;
-                await Clients.User(user.ToString()).SendAsync("ReceiveMessage", user, message);
+                var messageObject = new
+                {
+                    receiver = user,
+                    issuer = talkViewModel.IDUserIssuer,
+                    message = message
+                };
+
+                await Clients.User(user.ToString()).SendAsync("ReceiveMessage", user, messageObject);
             }
             else
             {

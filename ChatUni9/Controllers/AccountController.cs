@@ -25,6 +25,14 @@ namespace ChatUni9.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<JsonResult> Get(int userID)
+        {
+            var accountDAO = new AccountDAO();
+            var user = await accountDAO.Get(userID);
+            return Json(user);
+        }
+
         [HttpPost]
         public async Task<JsonResult> Create(UserViewModel user)
         {

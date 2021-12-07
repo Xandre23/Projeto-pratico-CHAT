@@ -1,4 +1,5 @@
 ﻿@model ChatUni9.Models.UserViewModel
+<input type="hidden" value="@Model.ID" id="id-contact-opend" />
 <div class="chat-header clearfix">
     <div class="row">
         <div class="col-lg-6">
@@ -21,7 +22,7 @@
                 }
                 else
                 {
-            <small>visto pela última vez em @Model.LastSeen.ToString("dd/MM/yyyy") às @Model.LastSeen.ToString("HH:mm")</small>
+                    <small>visto pela última vez em @Model.LastSeen.ToString("dd/MM/yyyy") às @Model.LastSeen.ToString("HH:mm")</small>
                 }
             </div>
         </div>
