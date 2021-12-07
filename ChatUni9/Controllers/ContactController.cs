@@ -41,8 +41,8 @@ namespace ChatUni9.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }       
 
-        }
         [HttpPost]
         public async Task SendSolitation(int ID)
         {
@@ -87,7 +87,7 @@ namespace ChatUni9.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [HttpDelete]
+        [HttpPost]
         public async Task Refuse(int ID)
         {
             try

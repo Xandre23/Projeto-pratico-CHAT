@@ -4,7 +4,16 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 $("#send").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    makeHTMLMessageReceive(getHour(), getDate(), message);
+    console.log(message);
+    let idContactOpend = 0;
+    if ($("#id-contact-opend").val()) {
+        idContactOpend = parseInt($("#id-contact-opend").val());
+    }
+    if (idContactOpend == message.issuer) {
+        makeHTMLMessageReceive(getHour(), getDate(), message.message);
+    } else {
+        notifyUser(message.issuer);
+    }   
 });
 
 connection.on("NewUserOnline", function (user) {

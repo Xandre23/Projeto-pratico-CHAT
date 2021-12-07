@@ -41,13 +41,13 @@
                                         @if (ViewBag.OnlineUsers.Contains(user.ID.ToString()))
                                         {
                                             <div class="status">
-                                                <i class="fa fa-circle online" id="status-usuario-@user.ID"></i> online 
+                                                <i class="fa fa-circle online" id="status-usuario-@user.ID"></i> online
                                             </div>
                                         }
                                         else
                                         {
-                                            <div class="status"> 
-                                                <i class="fa fa-circle offline" id="status-usuario-@user.ID"></i> offline 
+                                            <div class="status">
+                                                <i class="fa fa-circle offline" id="status-usuario-@user.ID"></i> offline
                                             </div>
                                         }
                                     </div>
@@ -95,4 +95,6 @@
     <script src="~/js/talk.js" asp-append-version="true"></script>
     <script src="~/js/contact.js" asp-append-version="true"></script>
     <script src="~/js/avatar-initials.js" asp-append-version="true"></script>
+    <script src="~/js/notify.min.js" asp-append-version="true"></script>
+    <script src="~/js/notifications.js" asp-append-version="true"></script>
 }
