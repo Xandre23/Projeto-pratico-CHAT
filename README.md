@@ -6,9 +6,7 @@ Projeto acadêmico
    Xandre De Paula Raimundo RA: 920102811<br>
 </div>
 
-<div align="center">
-   <h1>Link da aplicação</h1>
-   http://ec2-54-94-28-94.sa-east-1.compute.amazonaws.com/
+  
 </div>
 
 <div align="center">
